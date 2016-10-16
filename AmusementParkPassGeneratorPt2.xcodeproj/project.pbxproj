@@ -12,6 +12,7 @@
 		B3A695E71DB090F600869063 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A695E51DB090F600869063 /* Main.storyboard */; };
 		B3A695E91DB090F600869063 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3A695E81DB090F600869063 /* Assets.xcassets */; };
 		B3A695EC1DB090F600869063 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A695EA1DB090F600869063 /* LaunchScreen.storyboard */; };
+		B3A695F41DB092F500869063 /* EntrantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A695F31DB092F500869063 /* EntrantModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		B3A695E81DB090F600869063 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3A695EB1DB090F600869063 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3A695ED1DB090F600869063 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3A695F31DB092F500869063 /* EntrantModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntrantModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				B3A695E11DB090F600869063 /* AppDelegate.swift */,
 				B3A695E31DB090F600869063 /* ViewController.swift */,
+				B3A695F31DB092F500869063 /* EntrantModel.swift */,
 				B3A695E51DB090F600869063 /* Main.storyboard */,
 				B3A695E81DB090F600869063 /* Assets.xcassets */,
 				B3A695EA1DB090F600869063 /* LaunchScreen.storyboard */,
@@ -97,6 +100,7 @@
 					B3A695DD1DB090F600869063 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = YW3ZMZDA69;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -139,6 +143,7 @@
 			files = (
 				B3A695E41DB090F600869063 /* ViewController.swift in Sources */,
 				B3A695E21DB090F600869063 /* AppDelegate.swift in Sources */,
+				B3A695F41DB092F500869063 /* EntrantModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +307,7 @@
 				B3A695F21DB090F600869063 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
