@@ -7,18 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
-// Protocols
-
-protocol Entrant {
-    var areaAccess: AreaAccess { get }
-    var rideAccess: RideAccess { get }
-    var discountAccess: DiscountAccess? { get }
-    var information: Information? { get }
-    var accessGranted: Bool { get }
-}
-
-// Classes
+// Entrant Types
 
 class Guest: Entrant {
     var areaAccess: AreaAccess
@@ -28,34 +19,24 @@ class Guest: Entrant {
     var guestType: GuestType
     var accessGranted: Bool = true
     
-    required init(guestType: GuestType, DOB: DateOfBirth?) {
+    required init(guestType: GuestType, DOB: CustomDate, information: Information) {
         self.guestType = guestType
         switch guestType {
-        case .vip: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(skipAllRides: true); self.discountAccess = DiscountAccess(foodDiscount: 10, merchandiseDiscount: 20); self.information = nil
-            
-        case .classic: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(skipAllRides: false); self.discountAccess = nil; self.information = nil
-            
-        case .freeChild: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(skipAllRides: false); self.discountAccess = nil; self.information = Information(firstName: nil, lastName: nil, DOB: DOB as DateOfBirth!, streetAddress: nil, city: nil, state: nil, zipCode: nil)
-        
-        do {
-            try checkForDate(self)
-        } catch Errors.missingDOB {
-            print("Missing Date Of Birth!")
-            self.accessGranted = false
-            break
-        } catch _ {
-            fatalError("Something unknown went wrong. Sorry!")
-            }
-            
+        case .vip: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = DiscountAccess(foodDiscount: 10, merchandiseDiscount: 20); self.information = nil
+        case .classic: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = nil; self.information = nil
+        case .freeChild: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = nil; self.information = Information(firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: nil)
+        case .seniorGuest: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: true); self.discountAccess = DiscountAccess(foodDiscount: 10, merchandiseDiscount: 10); self.information = information
+        case .seasonPassGuest: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: true); self.discountAccess = DiscountAccess(foodDiscount: 10, merchandiseDiscount: 20); self.information = information
         }
     }
     
+    
     // Class function that checks if it's your birthday
     
-    class func checkForBirthday(_ guest: Entrant) {
+    func checkForBirthday(_ guest: Entrant) {
         if let dateOfBirth = guest.information?.DOB {
             if dateOfBirth.day == day && dateOfBirth.month == month {
-                print("Happy Birthday!! I hope you have an absolutely fantastic day at the park!")
+                print("Happy Birthday!! I hope you have a fantastic day at the park!")
             }
         }
     }
@@ -69,14 +50,14 @@ class HourlyEmployee: Entrant {
     var employeeType: HourlyEmployeeType
     var accessGranted: Bool = true
     
-    required init(employeeType: HourlyEmployeeType, firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) {
+    required init(employeeType: HourlyEmployeeType, information: Information) {
         self.employeeType = employeeType
         switch employeeType {
-        case .foodServices: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(skipAllRides: false); self.discountAccess = DiscountAccess(foodDiscount: 15, merchandiseDiscount: 25); self.information = Information(firstName: "Bill", lastName: "Merickel", DOB: nil, streetAddress: "1111", city: "LA", state: "CA", zipCode: "92506")
+        case .foodServices: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = DiscountAccess(foodDiscount: 15, merchandiseDiscount: 25); self.information = information
             
-        case .rideServices: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: true, maintainanceAreas: true, officeAreas: false); self.rideAccess = RideAccess(skipAllRides: false); self.discountAccess = DiscountAccess(foodDiscount: 15, merchandiseDiscount: 25); self.information = Information(firstName: "Bill", lastName: "Merickel", DOB: nil, streetAddress: "1111", city: "LA", state: "CA", zipCode: "92506")
+        case .rideServices: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: true, maintainanceAreas: true, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = DiscountAccess(foodDiscount: 15, merchandiseDiscount: 25); self.information = information
             
-        case .maintainence: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: false, maintainanceAreas: true, officeAreas: false); self.rideAccess = RideAccess(skipAllRides: false); self.discountAccess = DiscountAccess(foodDiscount: 15, merchandiseDiscount: 25); self.information = Information(firstName: firstName, lastName: lastName, DOB: nil, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+        case .maintainence: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: false, maintainanceAreas: true, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = DiscountAccess(foodDiscount: 15, merchandiseDiscount: 25); self.information = information
             
         }
     }
@@ -86,7 +67,7 @@ class HourlyEmployee: Entrant {
 
 class Manager: Entrant {
     var areaAccess: AreaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: true, maintainanceAreas: true, officeAreas: true)
-    var rideAccess: RideAccess = RideAccess(skipAllRides: true)
+    var rideAccess: RideAccess = RideAccess(accessAllRides: true, skipAllLines: true)
     var discountAccess: DiscountAccess? = DiscountAccess(foodDiscount: 15, merchandiseDiscount: 25)
     var information: Information?
     var accessGranted: Bool = true
@@ -96,64 +77,44 @@ class Manager: Entrant {
     }
 }
 
-// Entrant enums
-
-enum GuestType {
-    case classic
-    case vip
-    case freeChild
-}
-
-
-
-enum HourlyEmployeeType {
-    case foodServices
-    case rideServices
-    case maintainence
-}
-
-// Errors
-
-enum Errors: Error {
-    case missingDOB
-}
-
-// Helper structs
-
-struct AreaAccess {
-    var amusementAreas: Bool
-    var kitchenAreas: Bool
-    var rideControlAreas: Bool
-    var maintainanceAreas: Bool
-    var officeAreas: Bool
-}
-
-struct RideAccess {
-    let accessAllRides: Bool = true
-    var skipAllRides: Bool
-}
-
-struct DiscountAccess {
-    var foodDiscount: Int?
-    var merchandiseDiscount: Int?
-}
-
-struct Information {
-    var firstName: String?
-    var lastName: String?
-    var DOB: DateOfBirth?
-    var streetAddress: String?
-    var city: String?
-    var state: String?
-    var zipCode: String?
+class ContractEmployee: Entrant {
+    var areaAccess: AreaAccess
+    var rideAccess: RideAccess
+    let discountAccess: DiscountAccess? = nil
+    var information: Information?
+    var projectNumber:  ProjectID
+    var accessGranted: Bool = true
     
-    init(firstName: String?, lastName: String?, DOB: DateOfBirth?, streetAddress: String?, city: String?, state: String?, zipCode: String?) {
-        self.firstName = firstName
-        self.lastName = lastName
-        self.DOB = DOB
-        self.city = city
-        self.state = state
-        self.zipCode = zipCode
+    required init(projectNumber: ProjectID, information: Information) throws {
+        self.information = information
+        self.projectNumber = projectNumber
+        switch projectNumber {
+        case .AAA1: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: true, maintainanceAreas: true, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
+        case .AAA2: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: true, maintainanceAreas: true, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
+        case .AAA3: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: true, maintainanceAreas: true, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
+        case .BBB1: self.areaAccess = AreaAccess(amusementAreas: false, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
+        case .BBB2: self.areaAccess = AreaAccess(amusementAreas: false, kitchenAreas: true, rideControlAreas: false, maintainanceAreas: true, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
+        }
+    }
+}
+
+class Vendor: Entrant {
+    var accessGranted: Bool = true
+    var rideAccess: RideAccess
+    var areaAccess: AreaAccess
+    let discountAccess: DiscountAccess? = nil
+    var information: Information?
+    var vendorCompany: VendorCompany
+    
+    required init(vendor: VendorCompany, information: Information) throws {
+        self.information = information
+        self.vendorCompany = vendor
+        switch vendor {
+        case .acme: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: true, maintainanceAreas: true, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
+        case .orkin: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: true, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
+        case .fedex: self.areaAccess = AreaAccess(amusementAreas: false, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: true, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
+        case .nwElectrical: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: true, maintainanceAreas: true, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
+        }
     }
 }
 
@@ -161,26 +122,17 @@ struct Information {
 
 // Checks the DOB property and throws and an error if missing
 
-func checkForDate(_ guest: Guest) throws {
-    if guest.information?.DOB == nil {
-        throw Errors.missingDOB
+func checkForDate(guest: Guest) throws {
+    if guest.guestType == .freeChild {
+        if guest.information?.DOB == nil {
+            throw Errors.missingDOB
+        }
     }
 }
 
-
-
-// Date Information
-
-struct DateOfBirth {
-    let day: Int
-    let month: Int
-    let year: Int
+func checkForInformation(_ guest: Guest) throws {
+    if guest.information == nil {
+        throw Errors.missingInformation
+    }
 }
-
-let date = Date()
-let calendar = Calendar.current
-let components = calendar.components([.day , .month], fromDate: date)
-
-let month = components.month
-let day = components.day
 
