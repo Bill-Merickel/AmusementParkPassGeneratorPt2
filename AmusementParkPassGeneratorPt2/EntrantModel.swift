@@ -19,7 +19,7 @@ class Guest: Entrant {
     var guestType: GuestType
     var accessGranted: Bool = true
     
-    required init(guestType: GuestType, DOB: CustomDate, information: Information) {
+    init(guestType: GuestType, DOB: CustomDate, information: Information) {
         self.guestType = guestType
         switch guestType {
         case .vip: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = DiscountAccess(foodDiscount: 10, merchandiseDiscount: 20); self.information = nil
@@ -50,7 +50,7 @@ class HourlyEmployee: Entrant {
     var employeeType: HourlyEmployeeType
     var accessGranted: Bool = true
     
-    required init(employeeType: HourlyEmployeeType, information: Information) {
+    init(employeeType: HourlyEmployeeType, information: Information) {
         self.employeeType = employeeType
         switch employeeType {
         case .foodServices: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = DiscountAccess(foodDiscount: 15, merchandiseDiscount: 25); self.information = information
@@ -72,7 +72,7 @@ class Manager: Entrant {
     var information: Information?
     var accessGranted: Bool = true
     
-    required init(information: Information) {
+    init(information: Information) {
         self.information = information
     }
 }
@@ -85,7 +85,7 @@ class ContractEmployee: Entrant {
     var projectNumber:  ProjectID
     var accessGranted: Bool = true
     
-    required init(projectNumber: ProjectID, information: Information) throws {
+    init(projectNumber: ProjectID, information: Information) throws {
         self.information = information
         self.projectNumber = projectNumber
         switch projectNumber {
@@ -106,7 +106,7 @@ class Vendor: Entrant {
     var information: Information?
     var vendorCompany: VendorCompany
     
-    required init(vendor: VendorCompany, information: Information) throws {
+    init(vendor: VendorCompany, information: Information) throws {
         self.information = information
         self.vendorCompany = vendor
         switch vendor {

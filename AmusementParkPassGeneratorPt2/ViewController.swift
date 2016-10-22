@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var guest = Guest(guestType: .classic, DOB: CustomDate(day: 21, month: 10, year: 2002), information: Information(firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: nil))
+    
+    @IBOutlet weak var dateOfBirthTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
