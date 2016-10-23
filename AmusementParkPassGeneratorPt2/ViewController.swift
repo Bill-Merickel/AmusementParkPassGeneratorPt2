@@ -12,6 +12,28 @@ class ViewController: UIViewController {
     
     var guest = Guest(guestType: .classic, DOB: CustomDate(day: 21, month: 10, year: 2002), information: Information(firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: nil))
     
+    
+    @IBAction func guestButton(_ sender: AnyObject) {
+    }
+    @IBAction func employeeButton(_ sender: AnyObject) {
+    }
+    @IBAction func managerButton(_ sender: AnyObject) {
+    }
+    @IBAction func vendorButton(_ sender: AnyObject) {
+    }
+    @IBAction func button1(_ sender: AnyObject) {
+    }
+    @IBAction func button2(_ sender: AnyObject) {
+    }
+    @IBAction func button3(_ sender: AnyObject) {
+    }
+    @IBAction func button4(_ sender: AnyObject) {
+    }
+    
+    
+    
+    
+    @IBOutlet weak var dateOfBirth: UILabel!
     @IBOutlet weak var dateOfBirthTextField: UITextField!
     
     override func viewDidLoad() {
