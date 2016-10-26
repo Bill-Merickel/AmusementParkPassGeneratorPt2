@@ -24,6 +24,13 @@ enum HourlyEmployeeType {
     case maintainence
 }
 
+enum EmployeeType {
+    case foodServices
+    case rideServices
+    case maintainence
+    case contract
+}
+
 enum VendorCompany {
     case acme
     case orkin
@@ -37,6 +44,13 @@ enum ProjectID {
     case AAA3
     case BBB1
     case BBB2
+}
+
+enum EntrantSelection {
+    case guest
+    case employee
+    case manager
+    case vendor
 }
 
 // Errors
