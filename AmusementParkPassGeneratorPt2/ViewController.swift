@@ -10,11 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var entrant: Entrant
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var entrant: Entrant?
     
     
     @IBAction func guestButton(_ sender: AnyObject) {
@@ -48,8 +44,8 @@ class ViewController: UIViewController {
     }
     
     
-    var currentEntrantSelection: EntrantSelection
-    var secondCurrentEntrantSelection: AnyObject
+    var currentEntrantSelection: EntrantSelection?
+    var secondCurrentEntrantSelection: AnyObject?
 
     
     @IBOutlet weak var buttonView: UIStackView!
@@ -149,22 +145,22 @@ class ViewController: UIViewController {
     }
     
     func adaptUIFromCurrentSelection() {
-        switch currentEntrantSelection {
+        /*switch currentEntrantSelection {
         case .guest: firstButton.titleLabel?.text = "Classic"; secondButton.titleLabel?.text = "VIP"; thirdButton.titleLabel?.text = "Senior"; fourthButton.titleLabel?.text = "Child"; fifthButton.titleLabel?.text = "Season Pass"
         case .employee: firstButton.titleLabel?.text = "Food Services"; secondButton.titleLabel?.text = "Ride Services"; thirdButton.isHidden = true; fourthButton.titleLabel?.text = "Contract"; fifthButton.titleLabel?.text = "Maintanence"
         case .manager: firstButton.isHidden = true; secondButton.isHidden = true; thirdButton.isHidden = true; fourthButton.isHidden = true; fifthButton.isHidden = true
-        case .vendor: firstButton.isHidden = true; secondButton.isHidden = true; thirdButton.isHidden = true; fourthButton.isHidden = true; fifthButton.isHidden = true
+        case .vendor: firstButton.isHidden = true; secondButton.isHidden = true; thirdButton.isHidden = true; fourthButton.isHidden = true; fifthButton.isHidden = true*/
         }
     }
     
     func addFifthButton() {
-        self.buttonView.addArrangedSubview(fifthButton)
-        self.fifthButton.isHidden = false
+        self.buttonView.addArrangedSubview(addFifthButton)
+        fifthButton.isHidden = false
     }
     
     func removeFifthButton() {
-        self.buttonView.removeArrangedSubview(fifthButton)
-        self.fifthButton.isHidden = true
+        buttonView.removeArrangedSubview(fifthButton)
+        fifthButton.isHidden = true
     }
     
     
