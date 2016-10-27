@@ -43,6 +43,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Employee"/>
+                                                <connections>
+                                                    <action selector="employeeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qmB-dW-iDK"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYa-8w-Y4I">
                                                 <constraints>
@@ -101,10 +104,14 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mU3-9l-Seg">
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="lPD-8Q-jCO">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="lPD-8Q-jCO">
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBE-Sa-ncI">
-                                                <state key="normal" title="first">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="aEL-cf-YQU"/>
+                                                    <constraint firstAttribute="width" constant="98" id="g3Y-U4-tkG"/>
+                                                </constraints>
+                                                <state key="normal" title="Food Services">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -112,7 +119,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2P-rg-eoo">
-                                                <state key="normal" title="second">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="98" id="Tya-3C-uKW"/>
+                                                    <constraint firstAttribute="height" constant="30" id="idn-mQ-0WQ"/>
+                                                </constraints>
+                                                <state key="normal" title="Food Services">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -120,7 +131,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2l-wj-FO5">
-                                                <state key="normal" title="third">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="1pq-Vp-EVl"/>
+                                                    <constraint firstAttribute="width" constant="98" id="yDP-XJ-7Ez"/>
+                                                </constraints>
+                                                <state key="normal" title="Food Services">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -128,7 +143,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5X-qX-crk">
-                                                <state key="normal" title="fourth">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="98" id="AyI-uc-8WV"/>
+                                                    <constraint firstAttribute="height" constant="30" id="wrW-mz-hzD"/>
+                                                </constraints>
+                                                <state key="normal" title="Food Services">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -136,7 +155,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkO-sG-rNS">
-                                                <state key="normal" title="fifth">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="98" id="Cbl-1K-erK"/>
+                                                    <constraint firstAttribute="height" constant="30" id="gQA-eH-jWM"/>
+                                                </constraints>
+                                                <state key="normal" title="Food Services">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -522,7 +545,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2536" y="-2068"/>
+            <point key="canvasLocation" x="-2767" y="-2204"/>
         </scene>
         <!--Pass Controller-->
         <scene sceneID="1jm-zn-RxI">
