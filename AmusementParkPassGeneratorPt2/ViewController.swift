@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.classic as AnyObject?;
         firstButton.titleLabel?.text = "classic"
         case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.foodServices as AnyObject?
-            firstButton.titleLabel?.text = "Food Services"
+        firstButton.titleLabel?.text = "Food Services"
         case .some(.manager): secondCurrentEntrantSelection = nil
         case .some(.vendor): secondCurrentEntrantSelection = nil
         case .none: break
@@ -43,10 +43,10 @@ class ViewController: UIViewController {
     }
     @IBAction func button2(_ sender: AnyObject) {
         switch currentEntrantSelection {
-        case .some(.guest): secondCurrentEntrantSelection = GuestType.classic as AnyObject?;
-        firstButton.titleLabel?.text = "VIP"
-        case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.foodServices as AnyObject?
-        firstButton.titleLabel?.text = "Ride Services"
+        case .some(.guest): secondCurrentEntrantSelection = GuestType.vip as AnyObject?;
+        secondButton.titleLabel?.text = "VIP"
+        case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.rideServices as AnyObject?
+        secondButton.titleLabel?.text = "Ride Services"
         case .some(.manager): secondCurrentEntrantSelection = nil
         case .some(.vendor): secondCurrentEntrantSelection = nil
         case .none: break
@@ -55,10 +55,10 @@ class ViewController: UIViewController {
     }
     @IBAction func button3(_ sender: AnyObject) {
         switch currentEntrantSelection {
-        case .some(.guest): secondCurrentEntrantSelection = GuestType.classic as AnyObject?;
-        firstButton.titleLabel?.text = "Senior"
-        case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.foodServices as AnyObject?
-        firstButton.titleLabel?.text = "Maintainence"
+        case .some(.guest): secondCurrentEntrantSelection = GuestType.seniorGuest as AnyObject?;
+        thirdButton.titleLabel?.text = "Senior"
+        case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.maintainence as AnyObject?
+        thirdButton.titleLabel?.text = "Maintainence"
         case .some(.manager): secondCurrentEntrantSelection = nil
         case .some(.vendor): secondCurrentEntrantSelection = nil
         case .none: break
@@ -67,10 +67,10 @@ class ViewController: UIViewController {
     }
     @IBAction func button4(_ sender: AnyObject) {
         switch currentEntrantSelection {
-        case .some(.guest): secondCurrentEntrantSelection = GuestType.classic as AnyObject?;
-        firstButton.titleLabel?.text = "Child"
-        case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.foodServices as AnyObject?
-        firstButton.titleLabel?.text = "Contract"
+        case .some(.guest): secondCurrentEntrantSelection = GuestType.freeChild as AnyObject?;
+        fourthButton.titleLabel?.text = "Child"
+        case .some(.employee): secondCurrentEntrantSelection = EmployeeType.contract as AnyObject?
+        fourthButton.titleLabel?.text = "Contract"
         case .some(.manager): secondCurrentEntrantSelection = nil
         case .some(.vendor): secondCurrentEntrantSelection = nil
         case .none: break
@@ -78,6 +78,15 @@ class ViewController: UIViewController {
 
     }
     @IBAction func button5(_ sender: AnyObject) {
+        switch currentEntrantSelection {
+        case .some(.guest): secondCurrentEntrantSelection = GuestType.seasonPassGuest as AnyObject?;
+        fifthButton.titleLabel?.text = "Season Pass"
+        case .some(.employee): secondCurrentEntrantSelection = nil
+        removeFifthButton()
+        case .some(.manager): secondCurrentEntrantSelection = nil
+        case .some(.vendor): secondCurrentEntrantSelection = nil
+        case .none: break
+        }
     }
     
     
@@ -93,7 +102,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var thirdButton: UIButton!
-    
     @IBOutlet weak var fourthButton: UIButton!
     @IBOutlet weak var fifthButton: UIButton!
     @IBOutlet weak var dateOfBirth: UILabel!
