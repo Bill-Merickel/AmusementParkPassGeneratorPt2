@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5D83CA8F5B765D4AFDDE981A53F9647611ABDC3B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "5D83CA8F5B765D4AFDDE981A53F9647611ABDC3B" : 9223372036854775807,
+    "D12EFE4C1B85501FE96B2F8A4A0EAA3F44746A7D" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AEF3CD0F-02B9-43D9-8B09-33703B421B76",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "5D83CA8F5B765D4AFDDE981A53F9647611ABDC3B" : "AmusementParkPassGeneratorPt2\/",
+    "D12EFE4C1B85501FE96B2F8A4A0EAA3F44746A7D" : "..\/Swift\/AmusementParkPassGenerator"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AmusementParkPassGeneratorPt2",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AmusementParkPassGeneratorPt2.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Bill-Merickel\/AmusementParkPassGeneratorPt2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5D83CA8F5B765D4AFDDE981A53F9647611ABDC3B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Bill-Merickel\/AmusementParkPassGenerator.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D12EFE4C1B85501FE96B2F8A4A0EAA3F44746A7D"
+    }
+  ]
+}
