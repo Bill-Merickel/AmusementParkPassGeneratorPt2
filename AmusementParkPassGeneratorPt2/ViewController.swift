@@ -33,9 +33,9 @@ class ViewController: UIViewController {
     @IBAction func button1(_ sender: AnyObject) {
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.classic as AnyObject?;
-        firstButton.titleLabel?.text = "classic"
+        firstButton.setTitle("Classic", for: .normal)
         case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.foodServices as AnyObject?
-        firstButton.titleLabel?.text = "Food Services"
+        firstButton.setTitle("Food Services", for: .normal)
         case .some(.manager): secondCurrentEntrantSelection = nil
         case .some(.vendor): secondCurrentEntrantSelection = nil
         case .none: break
@@ -44,9 +44,9 @@ class ViewController: UIViewController {
     @IBAction func button2(_ sender: AnyObject) {
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.vip as AnyObject?;
-        secondButton.titleLabel?.text = "VIP"
+        secondButton.setTitle("VIP", for: .normal)
         case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.rideServices as AnyObject?
-        secondButton.titleLabel?.text = "Ride Services"
+        secondButton.setTitle("Ride Services", for: .normal)
         case .some(.manager): secondCurrentEntrantSelection = nil
         case .some(.vendor): secondCurrentEntrantSelection = nil
         case .none: break
@@ -56,9 +56,9 @@ class ViewController: UIViewController {
     @IBAction func button3(_ sender: AnyObject) {
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.seniorGuest as AnyObject?;
-        thirdButton.titleLabel?.text = "Senior"
+        thirdButton.setTitle("Senior", for: .normal)
         case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.maintainence as AnyObject?
-        thirdButton.titleLabel?.text = "Maintainence"
+        thirdButton.setTitle("Maintainence", for: .normal)
         case .some(.manager): secondCurrentEntrantSelection = nil
         case .some(.vendor): secondCurrentEntrantSelection = nil
         case .none: break
@@ -68,9 +68,9 @@ class ViewController: UIViewController {
     @IBAction func button4(_ sender: AnyObject) {
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.freeChild as AnyObject?;
-        fourthButton.titleLabel?.text = "Child"
+        fourthButton.setTitle("Child", for: .normal)
         case .some(.employee): secondCurrentEntrantSelection = EmployeeType.contract as AnyObject?
-        fourthButton.titleLabel?.text = "Contract"
+        fourthButton.setTitle("Contract", for: .normal)
         case .some(.manager): secondCurrentEntrantSelection = nil
         case .some(.vendor): secondCurrentEntrantSelection = nil
         case .none: break
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
     @IBAction func button5(_ sender: AnyObject) {
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.seasonPassGuest as AnyObject?;
-        fifthButton.titleLabel?.text = "Season Pass"
+        fifthButton.setTitle("Season Pass", for: .normal)
         case .some(.employee): secondCurrentEntrantSelection = nil
         removeFifthButton()
         case .some(.manager): secondCurrentEntrantSelection = nil
@@ -132,6 +132,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        clearButtonTexts()
     }
     
     override func didReceiveMemoryWarning() {
@@ -191,8 +192,8 @@ class ViewController: UIViewController {
     
     func adaptUIFromCurrentSelection() {
         switch currentEntrantSelection {
-        case .some(.guest): firstButton.titleLabel?.text = "Classic"; secondButton.titleLabel?.text = "VIP"; thirdButton.titleLabel?.text = "Senior"; fourthButton.titleLabel?.text = "Child"; fifthButton.titleLabel?.text = "Season Pass"; showFirst4Buttons(); fifthButton.isHidden = false; addFifthButton()
-        case .some(.employee): firstButton.titleLabel?.text = "Food Services"; secondButton.titleLabel?.text = "Ride Services"; thirdButton.titleLabel?.text = "Maintanence"; fourthButton.titleLabel?.text = "Contract"; showFirst4Buttons(); removeFifthButton()
+        case .some(.guest): firstButton.setTitle("Classic", for: .normal); secondButton.setTitle("VIP", for: .normal); thirdButton.setTitle("Senior", for: .normal); fourthButton.setTitle("Child", for: .normal); fifthButton.setTitle("Season Pass", for: .normal); showFirst4Buttons(); fifthButton.isHidden = false; addFifthButton()
+        case .some(.employee): firstButton.setTitle("Food Services", for: .normal); secondButton.setTitle("Ride Services", for: .normal); thirdButton.setTitle("Maintainence", for: .normal); fourthButton.setTitle("Contract", for: .normal); showFirst4Buttons(); removeFifthButton()
         case .some(.manager): firstButton.isHidden = true; secondButton.isHidden = true; thirdButton.isHidden = true; fourthButton.isHidden = true; fifthButton.isHidden = true
         case .some(.vendor): firstButton.isHidden = true; secondButton.isHidden = true; thirdButton.isHidden = true; fourthButton.isHidden = true; fifthButton.isHidden = true
         case .none: break
@@ -217,11 +218,11 @@ class ViewController: UIViewController {
     }
     
     func clearButtonTexts() {
-        firstButton.titleLabel?.text = ""
-        secondButton.titleLabel?.text = ""
-        thirdButton.titleLabel?.text = ""
-        fourthButton.titleLabel?.text = ""
-        fifthButton.titleLabel?.text = ""
+        firstButton.setTitle("", for: .normal)
+        secondButton.setTitle("", for: .normal)
+        thirdButton.setTitle("", for: .normal)
+        fourthButton.setTitle("", for: .normal)
+        fifthButton.setTitle("", for: .normal)
     }
     
     
