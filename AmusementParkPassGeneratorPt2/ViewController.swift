@@ -10,9 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var entrant: Entrant?
-    
-    
     @IBAction func guestButton(_ sender: AnyObject) {
         currentEntrantSelection = .guest
         adaptUIFromCurrentSelection()
@@ -33,22 +30,22 @@ class ViewController: UIViewController {
     @IBAction func button1(_ sender: AnyObject) {
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.classic as AnyObject?;
-        firstButton.setTitle("Classic", for: .normal); controlDOBTextField(on: false)
+        firstButton.setTitle("Classic", for: .normal); disableAllTextFields()
         case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.foodServices as AnyObject?
-        firstButton.setTitle("Food Services", for: .normal)
-        case .some(.manager): secondCurrentEntrantSelection = nil
-        case .some(.vendor): secondCurrentEntrantSelection = nil
+        firstButton.setTitle("Food Services", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
+        case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
+        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
         case .none: break
         }
     }
     @IBAction func button2(_ sender: AnyObject) {
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.vip as AnyObject?;
-        secondButton.setTitle("VIP", for: .normal)
+        secondButton.setTitle("VIP", for: .normal); disableAllTextFields()
         case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.rideServices as AnyObject?
-        secondButton.setTitle("Ride Services", for: .normal)
-        case .some(.manager): secondCurrentEntrantSelection = nil
-        case .some(.vendor): secondCurrentEntrantSelection = nil
+        secondButton.setTitle("Ride Services", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
+        case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
+        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
         case .none: break
         }
 
@@ -56,11 +53,11 @@ class ViewController: UIViewController {
     @IBAction func button3(_ sender: AnyObject) {
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.seniorGuest as AnyObject?;
-        thirdButton.setTitle("Senior", for: .normal)
+        thirdButton.setTitle("Senior", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlDOBTextField(on: true)
         case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.maintainence as AnyObject?
-        thirdButton.setTitle("Maintainence", for: .normal)
-        case .some(.manager): secondCurrentEntrantSelection = nil
-        case .some(.vendor): secondCurrentEntrantSelection = nil
+        thirdButton.setTitle("Maintainence", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
+        case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
+        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
         case .none: break
         }
 
@@ -68,11 +65,11 @@ class ViewController: UIViewController {
     @IBAction func button4(_ sender: AnyObject) {
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.freeChild as AnyObject?;
-        fourthButton.setTitle("Child", for: .normal); controlDOBTextField(on: true)
+        fourthButton.setTitle("Child", for: .normal); disableAllTextFields(); controlDOBTextField(on: true)
         case .some(.employee): secondCurrentEntrantSelection = EmployeeType.contract as AnyObject?
-        fourthButton.setTitle("Contract", for: .normal)
-        case .some(.manager): secondCurrentEntrantSelection = nil
-        case .some(.vendor): secondCurrentEntrantSelection = nil
+        fourthButton.setTitle("Contract", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
+        case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
+        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
         case .none: break
         }
 
@@ -80,11 +77,11 @@ class ViewController: UIViewController {
     @IBAction func button5(_ sender: AnyObject) {
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.seasonPassGuest as AnyObject?;
-        fifthButton.setTitle("Season Pass", for: .normal)
+        fifthButton.setTitle("Season Pass", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
         case .some(.employee): secondCurrentEntrantSelection = nil
         removeFifthButton()
-        case .some(.manager): secondCurrentEntrantSelection = nil
-        case .some(.vendor): secondCurrentEntrantSelection = nil
+        case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
+        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
         case .none: break
         }
     }
@@ -92,8 +89,6 @@ class ViewController: UIViewController {
     
     var currentEntrantSelection: EntrantSelection?
     var secondCurrentEntrantSelection: AnyObject?
-
-    @IBOutlet weak var dateOfBirthView: UIView!
     
     @IBOutlet weak var buttonView: UIStackView!
     @IBOutlet weak var guestButton: UIButton!
@@ -127,8 +122,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var zipCodeTextField: UITextField!
     
     @IBAction func populateData(_ sender: AnyObject) {
+        firstNameTextView.text = "John"
+        lastNameTextField.text = "Smith"
+        dateOfBirthTextField.text = "1/25/90"
+        dateOfVisitTextLabel.text = "9/30/16"
+        projectIDTextLabel.text = "AAA1"
+        companyTextField.text = "Fedex"
+        streetAddressTextLabel.text = "1234 Main Street"
+        cityTextField.text = "Los Angeles"
+        stateTextField.text = "California"
+        zipCodeTextField.text = "12345"
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -235,5 +239,99 @@ class ViewController: UIViewController {
             dateOfBirthTextField.isEnabled = false
         }
     }
+    
+    func controlDOVTextField(on: Bool) {
+        if on == true {
+            dateOfVisit.isEnabled = true
+            dateOfVisitTextLabel.isEnabled = true
+        } else {
+            dateOfVisit.isEnabled = false
+            dateOfVisitTextLabel.isEnabled = false
+        }
+    }
+    
+    func controlProjectIDTextField(on: Bool) {
+        if on == true {
+            projectID.isEnabled = true
+            projectIDTextLabel.isEnabled = true
+        } else {
+            projectID.isEnabled = false
+            projectIDTextLabel.isEnabled = false
+        }
+    }
+    
+    func controlCompanyTextField(on: Bool) {
+        if on == true {
+            company.isEnabled = true
+            companyTextField.isEnabled = true
+        } else {
+            company.isEnabled = false
+            companyTextField.isEnabled = false
+        }
+    }
+    
+    func controlFirstNameTextField(on: Bool) {
+        if on == true {
+            firstName.isEnabled = true
+            firstNameTextView.isEnabled = true
+        } else {
+            firstName.isEnabled = false
+            firstNameTextView.isEnabled = false
+        }
+    }
+    
+    func controlLastNameTextField(on: Bool) {
+        if on == true {
+            lastName.isEnabled = true
+            lastNameTextField.isEnabled = true
+        } else {
+            lastName.isEnabled = false
+            lastNameTextField.isEnabled = false
+        }
+    }
+    
+    func controlFullAddressTextFields(on: Bool) {
+        if on == true {
+            streetAddress.isEnabled = true
+            streetAddressTextLabel.isEnabled = true
+            city.isEnabled = true
+            cityTextField.isEnabled = true
+            state.isEnabled = true
+            stateTextField.isEnabled = true
+            zipCode.isEnabled = true
+            zipCodeTextField.isEnabled = true
+        } else {
+            streetAddress.isEnabled = false
+            streetAddressTextLabel.isEnabled = false
+            city.isEnabled = false
+            cityTextField.isEnabled = false
+            state.isEnabled = false
+            stateTextField.isEnabled = false
+            zipCode.isEnabled = false
+            zipCodeTextField.isEnabled = false
+        }
+    }
+    
+    func disableAllTextFields() {
+        dateOfBirth.isEnabled = false
+        dateOfBirthTextField.isEnabled = false
+        dateOfVisit.isEnabled = false
+        dateOfVisitTextLabel.isEnabled = false
+        projectID.isEnabled = false
+        projectIDTextLabel.isEnabled = false
+        firstName.isEnabled = false
+        firstNameTextView.isEnabled = false
+        lastName.isEnabled = false
+        lastNameTextField.isEnabled = false
+        streetAddress.isEnabled = false
+        streetAddressTextLabel.isEnabled = false
+        city.isEnabled = false
+        cityTextField.isEnabled = false
+        state.isEnabled = false
+        stateTextField.isEnabled = false
+        zipCode.isEnabled = false
+        zipCodeTextField.isEnabled = false
+    }
 
 
+}

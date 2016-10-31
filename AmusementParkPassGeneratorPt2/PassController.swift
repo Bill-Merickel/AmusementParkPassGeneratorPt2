@@ -9,6 +9,8 @@
 import UIKit
 
 class PassController: UIViewController {
+    
+    var entrant: Entrant?
 
     @IBAction func testAreaAccess(_ sender: AnyObject) {
     }
@@ -19,7 +21,6 @@ class PassController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -35,9 +36,11 @@ class PassController: UIViewController {
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
+        if segue.identifier == "MainController" {
+            if let destination == segue.destination as? ViewController {
+                
+            }
+        }
     }
     
 
