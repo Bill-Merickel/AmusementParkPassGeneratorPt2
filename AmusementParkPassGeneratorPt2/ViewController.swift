@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     @IBAction func button1(_ sender: AnyObject) {
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.classic as AnyObject?;
-        firstButton.setTitle("Classic", for: .normal)
+        firstButton.setTitle("Classic", for: .normal); controlDOBTextField(on: false)
         case .some(.employee): secondCurrentEntrantSelection = HourlyEmployeeType.foodServices as AnyObject?
         firstButton.setTitle("Food Services", for: .normal)
         case .some(.manager): secondCurrentEntrantSelection = nil
@@ -68,7 +68,7 @@ class ViewController: UIViewController {
     @IBAction func button4(_ sender: AnyObject) {
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.freeChild as AnyObject?;
-        fourthButton.setTitle("Child", for: .normal)
+        fourthButton.setTitle("Child", for: .normal); controlDOBTextField(on: true)
         case .some(.employee): secondCurrentEntrantSelection = EmployeeType.contract as AnyObject?
         fourthButton.setTitle("Contract", for: .normal)
         case .some(.manager): secondCurrentEntrantSelection = nil
@@ -93,6 +93,7 @@ class ViewController: UIViewController {
     var currentEntrantSelection: EntrantSelection?
     var secondCurrentEntrantSelection: AnyObject?
 
+    @IBOutlet weak var dateOfBirthView: UIView!
     
     @IBOutlet weak var buttonView: UIStackView!
     @IBOutlet weak var guestButton: UIButton!
@@ -225,5 +226,14 @@ class ViewController: UIViewController {
         fifthButton.setTitle("", for: .normal)
     }
     
-    
-}
+    func controlDOBTextField(on: Bool) {
+        if on == true {
+            dateOfBirth.isEnabled = true
+            dateOfBirthTextField.isEnabled = true
+        } else {
+            dateOfBirth.isEnabled = false
+            dateOfBirthTextField.isEnabled = false
+        }
+    }
+
+
