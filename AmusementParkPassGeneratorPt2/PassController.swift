@@ -11,6 +11,8 @@ import UIKit
 class PassController: UIViewController {
     
     var entrant: Entrant?
+    var currentEntrantSelection: EntrantSelection?
+    var secondCurrentEntrantSelection: AnyObject?
 
     @IBAction func testAreaAccess(_ sender: AnyObject) {
     }
@@ -18,6 +20,11 @@ class PassController: UIViewController {
     }
     @IBAction func testDiscountAccess(_ sender: AnyObject) {
     }
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var entrantTypeLabel: UILabel!
+    @IBOutlet weak var rideLabel: UILabel!
+    @IBOutlet weak var foodLabel: UILabel!
+    @IBOutlet weak var merchLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +40,18 @@ class PassController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    
+    func initEntrant() {
+        /*switch currentEntrantSelection {
+        case .some(.guest): entrant?.information?.f
+        }*/
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MainController" {
-            if let destination == segue.destination as? ViewController {
-                
+            if let destination = segue.destination as? ViewController {
+                self.entrant = destination.entrant
+                self.currentEntrantSelection = destination.currentEntrantSelection
+                self.secondCurrentEntrantSelection = destination.secondCurrentEntrantSelection
             }
         }
     }

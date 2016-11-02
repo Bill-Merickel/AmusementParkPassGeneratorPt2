@@ -409,6 +409,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="generatePass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ONb-Xd-jcD"/>
                                             <segue destination="XO1-uZ-h4S" kind="presentation" id="NEZ-Jc-4dz"/>
                                         </connections>
                                     </button>
@@ -429,7 +430,7 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uqg-To-yO3">
                                                 <rect key="frame" x="43" y="49" width="154" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -541,13 +542,13 @@
                     <connections>
                         <outlet property="buttonView" destination="lPD-8Q-jCO" id="Oc2-ec-iDR"/>
                         <outlet property="city" destination="e2W-DJ-76b" id="2tL-Og-fSy"/>
-                        <outlet property="cityTextField" destination="Uqg-To-yO3" id="zJj-KK-xJX"/>
+                        <outlet property="cityTextField" destination="Uqg-To-yO3" id="PUt-t6-cMg"/>
                         <outlet property="company" destination="tIt-Zs-MuI" id="sFV-Kd-Adf"/>
                         <outlet property="companyTextField" destination="dKl-x7-Pea" id="ySZ-WV-Iui"/>
                         <outlet property="dateOfBirth" destination="Cbh-xX-PSx" id="cb7-70-vse"/>
                         <outlet property="dateOfBirthTextField" destination="JgD-Qv-bsk" id="OY9-hY-0aL"/>
                         <outlet property="dateOfVisit" destination="Wqu-8G-Ejq" id="Dic-jw-uWz"/>
-                        <outlet property="dateOfVisitTextLabel" destination="JgD-Qv-bsk" id="ScV-HM-DgD"/>
+                        <outlet property="dateOfVisitTextLabel" destination="feC-l4-VpD" id="2ix-te-KYs"/>
                         <outlet property="employeeButton" destination="Ld5-Fy-meB" id="aLb-o6-u4c"/>
                         <outlet property="fifthButton" destination="OkO-sG-rNS" id="8i0-Yz-lXj"/>
                         <outlet property="firstButton" destination="YBE-Sa-ncI" id="rZI-Pd-dbZ"/>
@@ -573,7 +574,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4065" y="-3066"/>
+            <point key="canvasLocation" x="-3447" y="-3128"/>
         </scene>
         <!--Pass Controller-->
         <scene sceneID="1jm-zn-RxI">
@@ -722,6 +723,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.62194305549999995" green="0.53817898980000001" blue="0.63265224360000005" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="entrantTypeLabel" destination="pH2-vA-MWl" id="gkc-ea-vi2"/>
+                        <outlet property="foodLabel" destination="w5a-cb-0XD" id="anq-yR-9jQ"/>
+                        <outlet property="merchLabel" destination="qGx-Nq-SET" id="avo-UL-O1E"/>
+                        <outlet property="nameLabel" destination="UVO-dk-QFC" id="5ey-MD-zrG"/>
+                        <outlet property="rideLabel" destination="m1m-3Z-8sP" id="qF6-5E-VBv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Lg-X1-Fhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

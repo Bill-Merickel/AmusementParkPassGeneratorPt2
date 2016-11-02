@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // Entrant enums
 
@@ -18,12 +19,6 @@ enum GuestType {
     case seniorGuest
 }
 
-enum HourlyEmployeeType {
-    case foodServices
-    case rideServices
-    case maintainence
-}
-
 enum EmployeeType {
     case foodServices
     case rideServices
@@ -31,14 +26,14 @@ enum EmployeeType {
     case contract
 }
 
-enum VendorCompany {
-    case acme
-    case orkin
-    case fedex
-    case nwElectrical
+enum VendorCompany: String {
+    case Acme
+    case Orkin
+    case Fedex
+    case NWElectrical
 }
 
-enum ProjectID {
+enum ProjectID: String {
     case AAA1
     case AAA2
     case AAA3
@@ -58,7 +53,7 @@ enum EntrantSelection {
 enum Errors: Error {
     case missingDOB
     case missingInformation
-    case invalidProjectNumber(())
+    case invalidProjectNumber
     case invalidVendorCompany
 }
 
@@ -85,8 +80,8 @@ struct DiscountAccess {
 struct Information {
     var firstName: String?
     var lastName: String?
-    var DOB: CustomDate?
-    var DOV: CustomDate?
+    var DOB: String?
+    var DOV: String?
     var streetAddress: String?
     var city: String?
     var state: String?
@@ -103,12 +98,14 @@ struct Information {
 
 
 
+
+
 // Protocols
 
 protocol Entrant {
-    var areaAccess: AreaAccess { get }
-    var rideAccess: RideAccess { get }
-    var discountAccess: DiscountAccess? { get }
-    var information: Information? { get }
-    var accessGranted: Bool { get }
+    var areaAccess: AreaAccess { get set }
+    var rideAccess: RideAccess { get set }
+    var discountAccess: DiscountAccess? { get set }
+    var information: Information? { get set }
+    var accessGranted: Bool { get set }
 }
