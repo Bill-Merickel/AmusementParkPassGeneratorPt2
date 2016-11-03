@@ -55,6 +55,7 @@ enum Errors: Error {
     case missingInformation
     case invalidProjectNumber
     case invalidVendorCompany
+    case missingEntrantSelection
 }
 
 // Helper structs

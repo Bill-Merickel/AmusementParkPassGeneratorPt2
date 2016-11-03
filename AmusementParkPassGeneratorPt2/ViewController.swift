@@ -69,7 +69,7 @@ class ViewController: UIViewController {
         case .some(.guest): secondCurrentEntrantSelection = GuestType.freeChild as AnyObject?;
         fourthButton.setTitle("Child", for: .normal); disableAllTextFields(); controlDOBTextField(on: true)
         case .some(.employee): secondCurrentEntrantSelection = EmployeeType.contract as AnyObject?
-        fourthButton.setTitle("Contract", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
+        fourthButton.setTitle("Contract", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true); controlProjectIDTextField(on: true)
         case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
         case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
         case .none: break
@@ -124,29 +124,39 @@ class ViewController: UIViewController {
     @IBOutlet weak var zipCodeTextField: UITextField!
     
     @IBAction func generatePass(_ sender: Any) {
-        switch currentEntrantSelection {
-        case .some(.guest): do {
-            entrant = Guest(guestType: secondCurrentEntrantSelection as! GuestType, DOB: (dateOfBirthTextField.text?)!, information: Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text))
-        } catch Errors.missingDOB {
-            showAlert(title: "Missing Date of Birth", message: "All Free Child entrants must have a date of birth!")
-            }
-        case .some(.employee): do {
-            try entrant = Employee(employeeType: secondCurrentEntrantSelection as! EmployeeType, information: Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text), projectID: projectIDTextLabel.text)
-            } catch Errors.invalidProjectNumber {
-                showAlert(title: "Invalid Project ID", message: "The project ID you entered isn't valid.")
+        do {
+            switch currentEntrantSelection {
+            case .some(.guest): do {
+                try entrant = Guest(guestType: secondCurrentEntrantSelection as! GuestType, DOB: (dateOfBirthTextField.text!), information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text))
+            } catch Errors.missingDOB {
+                showAlert(title: "Missing Date of Birth", message: "All Free Child entrants must have a date of birth!")
             } catch _ {
                 fatalError()
             }
-        case .some(.manager): entrant = Manager(information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text!, city: cityTextField.text!, state: stateTextField.text!, zipCode: zipCodeTextField.text!))
-        case .some(.vendor): do {
-            try entrant = Vendor(vendor: companyTextField.text!, firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, DOB: dateOfBirthTextField.text!, DOV: dateOfVisitTextLabel.text!)
-        } catch Errors.missingInformation {
-            showAlert(title: "Missing Information", message: "Not all required fields have information!")
-        } catch _ {
-            fatalError()
+            case .some(.employee): do {
+                try entrant = Employee(employeeType: secondCurrentEntrantSelection as! EmployeeType, information: Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text), projectID: projectIDTextLabel.text)
+            } catch Errors.invalidProjectNumber {
+                showAlert(title: "Invalid Project ID", message: "The project ID you entered isn't valid.")
+            } catch Errors.missingInformation {
+                showAlert(title: "Missing Information", message: "Select an entrant to create a pass for.")
+            } catch _ {
+                fatalError()
+            }
+            case .some(.manager): entrant = Manager(information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text!, city: cityTextField.text!, state: stateTextField.text!, zipCode: zipCodeTextField.text!))
+            case .some(.vendor): do {
+                try entrant = Vendor(vendor: companyTextField.text!, firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, DOB: dateOfBirthTextField.text!, DOV: dateOfVisitTextLabel.text!)
+            } catch Errors.missingInformation {
+                showAlert(title: "Missing Information", message: "Not all required fields have information!")
+            } catch _ {
+                fatalError()
+            }
+            case .none: showAlert(title: "No Entrant Selected", message: "Select an entrant to create a pass for.")
             }
         }
+        
+        print(entrant?.information?.firstName)
     }
+    
     @IBAction func populateData(_ sender: AnyObject) {
         firstNameTextView.text = "John"
         lastNameTextField.text = "Smith"
@@ -158,12 +168,6 @@ class ViewController: UIViewController {
         cityTextField.text = "Los Angeles"
         stateTextField.text = "California"
         zipCodeTextField.text = "12345"
-    }
-    
-    func updateEntrantInformation() {
-        self.entrant?.information = Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text)
-        self.entrant?.information?.DOB = dateOfBirthTextField.text
-        self.entrant?.information?.DOV = dateOfVisitTextLabel.text
     }
     
     override func viewDidLoad() {

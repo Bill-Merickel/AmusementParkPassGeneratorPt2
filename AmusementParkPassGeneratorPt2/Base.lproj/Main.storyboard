@@ -409,8 +409,8 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="generatePass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ONb-Xd-jcD"/>
-                                            <segue destination="XO1-uZ-h4S" kind="presentation" id="NEZ-Jc-4dz"/>
+                                            <action selector="generatePass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vrs-y5-CGF"/>
+                                            <segue destination="XO1-uZ-h4S" kind="presentation" id="Sdg-4x-n0p"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -574,12 +574,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3447" y="-3128"/>
+            <point key="canvasLocation" x="-3785" y="-3466"/>
         </scene>
         <!--Pass Controller-->
         <scene sceneID="1jm-zn-RxI">
             <objects>
-                <viewController id="XO1-uZ-h4S" customClass="PassController" customModule="AmusementParkPassGeneratorPt2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PassController" id="XO1-uZ-h4S" customClass="PassController" customModule="AmusementParkPassGeneratorPt2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dwN-Ru-eBE"/>
                         <viewControllerLayoutGuide type="bottom" id="DRv-gE-4v1"/>
@@ -727,13 +727,13 @@
                         <outlet property="entrantTypeLabel" destination="pH2-vA-MWl" id="gkc-ea-vi2"/>
                         <outlet property="foodLabel" destination="w5a-cb-0XD" id="anq-yR-9jQ"/>
                         <outlet property="merchLabel" destination="qGx-Nq-SET" id="avo-UL-O1E"/>
-                        <outlet property="nameLabel" destination="UVO-dk-QFC" id="5ey-MD-zrG"/>
+                        <outlet property="nameLabel" destination="UVO-dk-QFC" id="4b9-kz-mux"/>
                         <outlet property="rideLabel" destination="m1m-3Z-8sP" id="qF6-5E-VBv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Lg-X1-Fhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1412" y="-1971"/>
+            <point key="canvasLocation" x="-3010" y="-3435"/>
         </scene>
     </scenes>
     <resources>

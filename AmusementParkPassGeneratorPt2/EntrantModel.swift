@@ -52,7 +52,7 @@ class Employee: Entrant {
     var information: Information?
     var employeeType: EmployeeType
     var accessGranted: Bool = true
-    var projectID: ProjectID
+    var projectID: ProjectID?
     
     init(employeeType: EmployeeType, information: Information, projectID: String?) throws {
         self.employeeType = employeeType
@@ -73,7 +73,12 @@ class Employee: Entrant {
         } else if projectID == ProjectID.BBB2.rawValue {
             self.projectID = ProjectID.BBB2
         } else {
+            self.projectID = nil
             throw Errors.invalidProjectNumber
+        }
+        
+        if (information.firstName?.isEmpty)! || (information.lastName?.isEmpty)! || (information.streetAddress?.isEmpty)! || (information.city?.isEmpty)! || (information.state?.isEmpty)! || (information.zipCode?.isEmpty)! {
+            throw Errors.missingInformation
         }
         self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: false, maintainanceAreas: true, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = nil; self.information = information
 
@@ -102,18 +107,18 @@ class Vendor: Entrant {
     var rideAccess: RideAccess
     var areaAccess: AreaAccess
     var information: Information?
-    var vendorCompany: VendorCompany
+    var vendorCompany: VendorCompany?
     
     init(vendor: String, firstName: String, lastName: String, DOB: String, DOV: String) throws {
         self.information = Information(firstName: firstName, lastName: lastName, streetAddress: nil, city: nil, state: nil, zipCode: nil)
         self.information?.DOB = DOB
         self.information?.DOV = DOV
         switch vendor {
-        case VendorCompany.Acme.rawValue: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: true, maintainanceAreas: true, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
-        case VendorCompany.Orkin.rawValue: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: true, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
-        case VendorCompany.Fedex.rawValue: self.areaAccess = AreaAccess(amusementAreas: false, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: true, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
-        case VendorCompany.NWElectrical.rawValue: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: true, maintainanceAreas: true, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false)
-        default: throw Errors.invalidVendorCompany
+        case VendorCompany.Acme.rawValue: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: true, maintainanceAreas: true, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false); self.vendorCompany = .Acme
+        case VendorCompany.Orkin.rawValue: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: true, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false); self.vendorCompany = .Orkin
+        case VendorCompany.Fedex.rawValue: self.areaAccess = AreaAccess(amusementAreas: false, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: true, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false); self.vendorCompany = .Fedex
+        case VendorCompany.NWElectrical.rawValue: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: true, maintainanceAreas: true, officeAreas: true); self.rideAccess = RideAccess(accessAllRides: false, skipAllLines: false); self.vendorCompany = .NWElectrical
+        default: self.vendorCompany = nil; throw Errors.invalidVendorCompany
         }
         
         if firstName == "" || lastName == "" || DOB == "" || DOV == "" {
