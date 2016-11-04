@@ -729,6 +729,7 @@
                         <outlet property="merchLabel" destination="qGx-Nq-SET" id="avo-UL-O1E"/>
                         <outlet property="nameLabel" destination="UVO-dk-QFC" id="4b9-kz-mux"/>
                         <outlet property="rideLabel" destination="m1m-3Z-8sP" id="qF6-5E-VBv"/>
+                        <outlet property="testResults" destination="w2w-Kq-3oP" id="E3d-t0-tIC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Lg-X1-Fhb" userLabel="First Responder" sceneMemberID="firstResponder"/>

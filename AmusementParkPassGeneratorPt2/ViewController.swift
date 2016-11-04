@@ -124,37 +124,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var zipCodeTextField: UITextField!
     
     @IBAction func generatePass(_ sender: Any) {
-        do {
-            switch currentEntrantSelection {
-            case .some(.guest): do {
-                try entrant = Guest(guestType: secondCurrentEntrantSelection as! GuestType, DOB: (dateOfBirthTextField.text!), information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text))
-            } catch Errors.missingDOB {
-                showAlert(title: "Missing Date of Birth", message: "All Free Child entrants must have a date of birth!")
-            } catch _ {
-                fatalError()
-            }
-            case .some(.employee): do {
-                try entrant = Employee(employeeType: secondCurrentEntrantSelection as! EmployeeType, information: Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text), projectID: projectIDTextLabel.text)
-            } catch Errors.invalidProjectNumber {
-                showAlert(title: "Invalid Project ID", message: "The project ID you entered isn't valid.")
-            } catch Errors.missingInformation {
-                showAlert(title: "Missing Information", message: "Select an entrant to create a pass for.")
-            } catch _ {
-                fatalError()
-            }
-            case .some(.manager): entrant = Manager(information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text!, city: cityTextField.text!, state: stateTextField.text!, zipCode: zipCodeTextField.text!))
-            case .some(.vendor): do {
-                try entrant = Vendor(vendor: companyTextField.text!, firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, DOB: dateOfBirthTextField.text!, DOV: dateOfVisitTextLabel.text!)
-            } catch Errors.missingInformation {
-                showAlert(title: "Missing Information", message: "Not all required fields have information!")
-            } catch _ {
-                fatalError()
-            }
-            case .none: showAlert(title: "No Entrant Selected", message: "Select an entrant to create a pass for.")
-            }
-        }
-        
-        print(entrant?.information?.firstName)
+        initEntrant()
+        print("First \(entrant?.information?.firstName)")
     }
     
     @IBAction func populateData(_ sender: AnyObject) {
@@ -170,6 +141,36 @@ class ViewController: UIViewController {
         zipCodeTextField.text = "12345"
     }
     
+    func initEntrant() {
+            switch currentEntrantSelection {
+            case .some(.guest): do {
+                try entrant = Guest(guestType: secondCurrentEntrantSelection as! GuestType, DOB: (dateOfBirthTextField.text!), information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text))
+            } catch Errors.missingDOB {
+                showAlert(title: "Missing Date of Birth", message: "All Free Child entrants must have a date of birth!")
+            } catch _ {
+                fatalError()
+                }
+            case .some(.employee): do {
+                try entrant = Employee(employeeType: secondCurrentEntrantSelection as! EmployeeType, information: Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text), projectID: projectIDTextLabel.text)
+            } catch Errors.invalidProjectNumber {
+                showAlert(title: "Invalid Project ID", message: "The project ID you entered isn't valid.")
+            } catch Errors.missingInformation {
+                showAlert(title: "Missing Information", message: "Select an entrant to create a pass for.")
+            } catch _ {
+                fatalError()
+                }
+            case .some(.manager): entrant = Manager(information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text!, city: cityTextField.text!, state: stateTextField.text!, zipCode: zipCodeTextField.text!))
+            case .some(.vendor): do {
+                try entrant = Vendor(vendor: companyTextField.text!, firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, DOB: dateOfBirthTextField.text!, DOV: dateOfVisitTextLabel.text!)
+            } catch Errors.missingInformation {
+                showAlert(title: "Missing Information", message: "Not all required fields have information!")
+            } catch _ {
+                fatalError()
+                }
+            case .none: showAlert(title: "No Entrant Selected", message: "Select an entrant to create a pass for.")
+            }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -181,56 +182,18 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MainController" {
+            if let destinationVC = segue.destination as? PassController {
+                if let entrant = self.entrant {
+                    destinationVC.entrant = entrant
+                }
+            }
+        }
+    }
+    
     // There are different swipe methods for different park assets
-    func swipeForRides(_ entrant: Entrant) {
-        if entrant.accessGranted == true {
-            playGrantedSound(grantedSoundURL)
-            if entrant.rideAccess.skipAllLines {
-                print("Access GRANTED: allowed to skip rides")
-            } else {
-                print("Access GRANTED")
-            }
-        } else {
-            playDeniedSound(deniedSoundURL)
-            print("Access DENIED")
-        }
-    }
-    
-    func swipeForAreas(_ entrant: Entrant) {
-        if entrant.accessGranted {
-            playGrantedSound(grantedSoundURL)
-            if entrant.areaAccess.kitchenAreas {
-                print("Kitchen: GRANTED")
-            }
-            if entrant.areaAccess.rideControlAreas {
-                print("Ride Control: GRANTED")
-            }
-            if entrant.areaAccess.maintainanceAreas {
-                print("Maintainence Areas: GRANTED")
-            }
-            if entrant.areaAccess.amusementAreas {
-                print("Amusement Areas: GRANTED")
-            }
-            if entrant.areaAccess.officeAreas {
-                print("Office Areas: GRANTED")
-            }
-        } else {
-            playDeniedSound(deniedSoundURL)
-            print("Access: DENIED")
-        }
-    }
-    
-    func swipeForDiscounts(_ entrant: Entrant) {
-        if let discount = entrant.discountAccess {
-            playGrantedSound(grantedSoundURL)
-            print("\(discount.foodDiscount) discount on food, \(discount.merchandiseDiscount) discount on merchandise.")
-        } else {
-            playDeniedSound(deniedSoundURL)
-            print("Sorry, no discounts.")
-        }
         
-    }
-    
     func adaptUIFromCurrentSelection() {
         switch currentEntrantSelection {
         case .some(.guest): firstButton.setTitle("Classic", for: .normal); secondButton.setTitle("VIP", for: .normal); thirdButton.setTitle("Senior", for: .normal); fourthButton.setTitle("Child", for: .normal); fifthButton.setTitle("Season Pass", for: .normal); showFirst4Buttons(); fifthButton.isHidden = false; addFifthButton()
