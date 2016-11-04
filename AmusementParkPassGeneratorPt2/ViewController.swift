@@ -12,6 +12,26 @@ class ViewController: UIViewController {
     
     var entrant: Entrant?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view,  from a nib.
+        clearButtonTexts()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MainController" {
+            if let destinationVC = segue.destination as? PassController {
+                destinationVC.entrant = entrant
+            }
+        }
+    }
+    
+    
     @IBAction func guestButton(_ sender: AnyObject) {
         currentEntrantSelection = .guest
         adaptUIFromCurrentSelection(); disableAllTextFields()
@@ -25,8 +45,8 @@ class ViewController: UIViewController {
         adaptUIFromCurrentSelection(); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
     }
     @IBAction func vendorButton(_ sender: AnyObject) {
-       currentEntrantSelection = .vendor
-       adaptUIFromCurrentSelection(); disableAllTextFields(); controlDOVTextField(on: true)
+        currentEntrantSelection = .vendor
+        adaptUIFromCurrentSelection(); disableAllTextFields(); controlDOVTextField(on: true)
     }
     
     @IBAction func button1(_ sender: AnyObject) {
@@ -50,7 +70,7 @@ class ViewController: UIViewController {
         case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
         case .none: break
         }
-
+        
     }
     @IBAction func button3(_ sender: AnyObject) {
         switch currentEntrantSelection {
@@ -62,7 +82,7 @@ class ViewController: UIViewController {
         case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
         case .none: break
         }
-
+        
     }
     @IBAction func button4(_ sender: AnyObject) {
         switch currentEntrantSelection {
@@ -74,7 +94,7 @@ class ViewController: UIViewController {
         case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
         case .none: break
         }
-
+        
     }
     @IBAction func button5(_ sender: AnyObject) {
         switch currentEntrantSelection {
@@ -142,58 +162,37 @@ class ViewController: UIViewController {
     }
     
     func initEntrant() {
-            switch currentEntrantSelection {
-            case .some(.guest): do {
-                try entrant = Guest(guestType: secondCurrentEntrantSelection as! GuestType, DOB: (dateOfBirthTextField.text!), information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text))
-            } catch Errors.missingDOB {
-                showAlert(title: "Missing Date of Birth", message: "All Free Child entrants must have a date of birth!")
-            } catch _ {
-                fatalError()
-                }
-            case .some(.employee): do {
-                try entrant = Employee(employeeType: secondCurrentEntrantSelection as! EmployeeType, information: Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text), projectID: projectIDTextLabel.text)
-            } catch Errors.invalidProjectNumber {
-                showAlert(title: "Invalid Project ID", message: "The project ID you entered isn't valid.")
-            } catch Errors.missingInformation {
-                showAlert(title: "Missing Information", message: "Select an entrant to create a pass for.")
-            } catch _ {
-                fatalError()
-                }
-            case .some(.manager): entrant = Manager(information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text!, city: cityTextField.text!, state: stateTextField.text!, zipCode: zipCodeTextField.text!))
-            case .some(.vendor): do {
-                try entrant = Vendor(vendor: companyTextField.text!, firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, DOB: dateOfBirthTextField.text!, DOV: dateOfVisitTextLabel.text!)
-            } catch Errors.missingInformation {
-                showAlert(title: "Missing Information", message: "Not all required fields have information!")
-            } catch _ {
-                fatalError()
-                }
-            case .none: showAlert(title: "No Entrant Selected", message: "Select an entrant to create a pass for.")
+        switch currentEntrantSelection {
+        case .some(.guest): do {
+            try entrant = Guest(guestType: secondCurrentEntrantSelection as! GuestType, DOB: (dateOfBirthTextField.text!), information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text))
+        } catch Errors.missingDOB {
+            showAlert(title: "Missing Date of Birth", message: "All Free Child entrants must have a date of birth!")
+        } catch _ {
+            fatalError()
             }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        clearButtonTexts()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "MainController" {
-            if let destinationVC = segue.destination as? PassController {
-                if let entrant = self.entrant {
-                    destinationVC.entrant = entrant
-                }
+        case .some(.employee): do {
+            try entrant = Employee(employeeType: secondCurrentEntrantSelection as! EmployeeType, information: Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text), projectID: projectIDTextLabel.text)
+        } catch Errors.invalidProjectNumber {
+            showAlert(title: "Invalid Project ID", message: "The project ID you entered isn't valid.")
+        } catch Errors.missingInformation {
+            showAlert(title: "Missing Information", message: "Select an entrant to create a pass for.")
+        } catch _ {
+            fatalError()
             }
+        case .some(.manager): entrant = Manager(information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text!, city: cityTextField.text!, state: stateTextField.text!, zipCode: zipCodeTextField.text!))
+        case .some(.vendor): do {
+            try entrant = Vendor(vendor: companyTextField.text!, firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, DOB: dateOfBirthTextField.text!, DOV: dateOfVisitTextLabel.text!)
+        } catch Errors.missingInformation {
+            showAlert(title: "Missing Information", message: "Not all required fields have information!")
+        } catch _ {
+            fatalError()
+            }
+        case .none: showAlert(title: "No Entrant Selected", message: "Select an entrant to create a pass for.")
         }
     }
     
     // There are different swipe methods for different park assets
-        
+    
     func adaptUIFromCurrentSelection() {
         switch currentEntrantSelection {
         case .some(.guest): firstButton.setTitle("Classic", for: .normal); secondButton.setTitle("VIP", for: .normal); thirdButton.setTitle("Senior", for: .normal); fourthButton.setTitle("Child", for: .normal); fifthButton.setTitle("Season Pass", for: .normal); showFirst4Buttons(); fifthButton.isHidden = false; addFifthButton()

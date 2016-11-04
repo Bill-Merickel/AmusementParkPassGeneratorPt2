@@ -25,8 +25,8 @@ class Guest: Entrant {
         case .vip: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = DiscountAccess(foodDiscount: 10, merchandiseDiscount: 20); self.information = nil
         case .classic: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = nil; self.information = nil
         case .freeChild: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = nil; self.information = Information(firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: nil); self.information?.DOB = DOB
-            if DOB == "" {
-                throw Errors.missingDOB
+        if DOB == "" {
+            throw Errors.missingDOB
             }
         case .seniorGuest: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: true); self.discountAccess = DiscountAccess(foodDiscount: 10, merchandiseDiscount: 10); self.information = information; self.information!.DOB = DOB
         case .seasonPassGuest: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: true); self.discountAccess = DiscountAccess(foodDiscount: 10, merchandiseDiscount: 20); self.information = information
@@ -37,12 +37,12 @@ class Guest: Entrant {
     // Class function that checks if it's your birthday
     
     /* func checkForBirthday(_ guest: Entrant) {
-        if let dateOfBirth = guest.information?.DOB {
-            if dateOfBirth.day == day && dateOfBirth.month == month {
-                print("Happy Birthday!! I hope you have a fantastic day at the park!")
-            }
-        }
-    }*/
+     if let dateOfBirth = guest.information?.DOB {
+     if dateOfBirth.day == day && dateOfBirth.month == month {
+     print("Happy Birthday!! I hope you have a fantastic day at the park!")
+     }
+     }
+     }*/
 }
 
 class Employee: Entrant {
@@ -62,26 +62,26 @@ class Employee: Entrant {
         case .rideServices: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: true, maintainanceAreas: true, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = DiscountAccess(foodDiscount: 15, merchandiseDiscount: 25); self.information = information
         case .maintainence: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: false, maintainanceAreas: true, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = DiscountAccess(foodDiscount: 15, merchandiseDiscount: 25); self.information = information
         case .contract:
-        if projectID == ProjectID.AAA1.rawValue {
-            self.projectID = ProjectID.AAA1
-        } else if projectID == ProjectID.AAA2.rawValue {
-            self.projectID = ProjectID.AAA2
-        } else if projectID == ProjectID.AAA3.rawValue {
-            self.projectID = ProjectID.AAA3
-        } else if projectID == ProjectID.BBB1.rawValue {
-            self.projectID = ProjectID.BBB1
-        } else if projectID == ProjectID.BBB2.rawValue {
-            self.projectID = ProjectID.BBB2
-        } else {
-            self.projectID = nil
-            throw Errors.invalidProjectNumber
-        }
-        
-        if (information.firstName?.isEmpty)! || (information.lastName?.isEmpty)! || (information.streetAddress?.isEmpty)! || (information.city?.isEmpty)! || (information.state?.isEmpty)! || (information.zipCode?.isEmpty)! {
-            throw Errors.missingInformation
-        }
-        self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: false, maintainanceAreas: true, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = nil; self.information = information
-
+            if projectID == ProjectID.AAA1.rawValue {
+                self.projectID = ProjectID.AAA1
+            } else if projectID == ProjectID.AAA2.rawValue {
+                self.projectID = ProjectID.AAA2
+            } else if projectID == ProjectID.AAA3.rawValue {
+                self.projectID = ProjectID.AAA3
+            } else if projectID == ProjectID.BBB1.rawValue {
+                self.projectID = ProjectID.BBB1
+            } else if projectID == ProjectID.BBB2.rawValue {
+                self.projectID = ProjectID.BBB2
+            } else {
+                self.projectID = nil
+                throw Errors.invalidProjectNumber
+            }
+            
+            if (information.firstName?.isEmpty)! || (information.lastName?.isEmpty)! || (information.streetAddress?.isEmpty)! || (information.city?.isEmpty)! || (information.state?.isEmpty)! || (information.zipCode?.isEmpty)! {
+                throw Errors.missingInformation
+            }
+            self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: false, maintainanceAreas: true, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = nil; self.information = information
+            
             
         }
     }

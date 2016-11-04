@@ -11,7 +11,7 @@ import UIKit
 class PassController: UIViewController {
     
     var entrant: Entrant?
-
+    
     @IBAction func testAreaAccess(_ sender: AnyObject) {
         swipeForAreas(entrant!)
     }
@@ -77,15 +77,15 @@ class PassController: UIViewController {
         }
         
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print("Second \(entrant?.information?.firstName)")
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
