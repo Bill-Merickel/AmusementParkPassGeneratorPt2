@@ -27,7 +27,9 @@ class PassController: UIViewController {
         fourthTestResult.text = ""
         fifthTestResult.text = ""
         
-        checkForBirthday(entrant!)
+        if let entrant = self.entrant {
+            checkForBirthday(entrant)
+        }
         
         if let skipRides = entrant?.rideAccess.skipAllLines {
             if skipRides {

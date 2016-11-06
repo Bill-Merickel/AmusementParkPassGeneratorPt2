@@ -70,7 +70,7 @@ class Employee: Entrant {
             }
             
             // If required information is missing...
-            if (information.firstName?.isEmpty)! || (information.lastName?.isEmpty)! || (information.streetAddress?.isEmpty)! || (information.city?.isEmpty)! || (information.state?.isEmpty)! || (information.zipCode?.isEmpty)! {
+            if information.firstName == "" || information.lastName == "" || information.streetAddress == "" || information.city == "" || information.state == "" || information.zipCode == "" {
                 // Throw an error (this is in all classes)
                 throw Errors.missingInformation
             }

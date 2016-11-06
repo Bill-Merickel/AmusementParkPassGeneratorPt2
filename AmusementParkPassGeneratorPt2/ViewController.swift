@@ -65,7 +65,7 @@ class ViewController: UIViewController {
     @IBAction func vendorButton(_ sender: AnyObject) {
         currentEntrantSelection = .vendor
         deleteText()
-        adaptUIFromCurrentSelection(); disableAllTextFields(); controlDOVTextField(on: true)
+        adaptUIFromCurrentSelection(); disableAllTextFields(); controlDOVTextField(on: true); controlCompanyTextField(on: true); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlDOBTextField(on: true)
     }
     
     // When a button to determine what type of entrant (in detail is chosen) is selected, it will look at what type of entrant is suggested to change the buttons according to the type. It will also enable/disable the text fields based on what is required.
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         case .some(.employee): secondCurrentEntrantSelection = .foodEmployee
         firstButton.setTitle("Food Services", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
         case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
-        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
+        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlDOVTextField(on: true); controlCompanyTextField(on: true); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlDOBTextField(on: true)
         case .none: break
         }
     }
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
         secondButton.setTitle("Ride Services", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
             secondCurrentEntrantSelection = .rideEmployee
         case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
-        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
+        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlDOVTextField(on: true); controlCompanyTextField(on: true); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlDOBTextField(on: true)
         case .none: break
         }
         
@@ -104,7 +104,7 @@ class ViewController: UIViewController {
         case .some(.employee): secondCurrentEntrantSelection = .maintainenceEmployee
         thirdButton.setTitle("Maintainence", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
         case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
-        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
+        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlDOVTextField(on: true); controlCompanyTextField(on: true); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlDOBTextField(on: true)
         case .none: break
         }
         
@@ -117,7 +117,7 @@ class ViewController: UIViewController {
         case .some(.employee): secondCurrentEntrantSelection = .contract
         fourthButton.setTitle("Contract", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true); controlProjectIDTextField(on: true)
         case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
-        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
+        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlDOVTextField(on: true); controlCompanyTextField(on: true); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlDOBTextField(on: true)
         case .none: break
         }
         
@@ -130,7 +130,7 @@ class ViewController: UIViewController {
         case .some(.employee): secondCurrentEntrantSelection = nil
         removeFifthButton()
         case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
-        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
+        case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlDOVTextField(on: true); controlCompanyTextField(on: true); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlDOBTextField(on: true)
         case .none: break
         }
     }
@@ -252,8 +252,8 @@ class ViewController: UIViewController {
             fatalError()
         }
         case .some(.vendor): do {
-            try entrant = Vendor(vendor: companyTextField.text!, firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, DOB: dateOfBirthTextField.text!, DOV: dateOfVisitTextLabel.text!)
             secondCurrentEntrantSelection = .vendor
+            try entrant = Vendor(vendor: companyTextField.text!, firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, DOB: dateOfBirthTextField.text!, DOV: dateOfVisitTextLabel.text!)
         } catch Errors.missingInformation {
             showAlert(title: "Missing Information", message: "Not all required fields have information!")
         } catch _ {
@@ -421,12 +421,15 @@ class ViewController: UIViewController {
         stateTextField.isEnabled = false
         zipCode.isEnabled = false
         zipCodeTextField.isEnabled = false
+        company.isEnabled = false
+        companyTextField.isEnabled = false
     }
     
     func deleteText() {
         dateOfBirthTextField.text = ""
         dateOfVisitTextLabel.text = ""
         projectIDTextLabel.text = ""
+        companyTextField.text = ""
         firstNameTextView.text = ""
         lastNameTextField.text = ""
         streetAddressTextLabel.text = ""
@@ -438,8 +441,47 @@ class ViewController: UIViewController {
     // And the last function (for the extra credit) checks to see if user inputs seem suspiciously short
     
     func checkLengthsOfInput() throws {
-        if (firstNameTextView.text?.characters.count)! <= 1 || (lastNameTextField.text?.characters.count)! <= 1 || (streetAddressTextLabel.text?.characters.count)! <= 5 || (cityTextField.text?.characters.count)! <= 2 || (state.text?.characters.count)! <= 3 || (zipCodeTextField.text?.characters.count)! <= 4 || (dateOfBirthTextField.text?.characters.count)! <= 5 || (dateOfVisitTextLabel.text?.characters.count)! <= 5 || (projectIDTextLabel.text?.characters.count)! <= 3 || (firstNameTextView.text?.characters.count)! >= 14 || (lastNameTextField.text?.characters.count)! >= 15 || (streetAddressTextLabel.text?.characters.count)! >= 30 || (cityTextField.text?.characters.count)! >= 16 || (state.text?.characters.count)! >= 14 || (zipCodeTextField.text?.characters.count)! >= 6 || (dateOfBirthTextField.text?.characters.count)! >= 8 || (dateOfVisitTextLabel.text?.characters.count)! >= 8 || (projectIDTextLabel.text?.characters.count)! >= 5 {
-             throw Errors.inputsTooShort
+        if firstNameTextView.isEnabled {
+            if ((firstNameTextView.text?.characters.count))! <= 1 {
+                throw Errors.inputsTooShort
+            }
+        }
+        if lastNameTextField.isEnabled {
+            if ((firstNameTextView.text?.characters.count))! <= 2 {
+                throw Errors.inputsTooShort
+            }        }
+        if dateOfBirthTextField.isEnabled {
+            if ((firstNameTextView.text?.characters.count))! <= 5 {
+                throw Errors.inputsTooShort
+            }        }
+        if dateOfVisitTextLabel.isEnabled {
+            if ((firstNameTextView.text?.characters.count))! <= 5 {
+                throw Errors.inputsTooShort
+            }        }
+        if projectIDTextLabel.isEnabled {
+            if ((firstNameTextView.text?.characters.count))! <= 3 {
+                throw Errors.inputsTooShort
+            }        }
+        if streetAddressTextLabel.isEnabled {
+            if ((firstNameTextView.text?.characters.count))! <= 6 {
+                throw Errors.inputsTooShort
+            }        }
+        if companyTextField.isEnabled {
+            if ((firstNameTextView.text?.characters.count))! <= 3 {
+                throw Errors.inputsTooShort
+            }        }
+        if cityTextField.isEnabled {
+            if ((firstNameTextView.text?.characters.count))! <= 4 {
+                throw Errors.inputsTooShort
+            }        }
+        if stateTextField.isEnabled {
+            if ((firstNameTextView.text?.characters.count))! <= 3 {
+                throw Errors.inputsTooShort
+            }        }
+        if zipCodeTextField.isEnabled {
+            if ((firstNameTextView.text?.characters.count))! <= 4 {
+                throw Errors.inputsTooShort
+            }
         }
     }
 }
