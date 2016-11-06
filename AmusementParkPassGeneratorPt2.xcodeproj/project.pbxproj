@@ -49,6 +49,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B38BDE7D1DCFAEDD009BA21E /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				B3F91C841DB3478A001FE8E6 /* AccessDenied.wav */,
+				B3F91C861DB34791001FE8E6 /* AccessGranted.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		B3A695D51DB090F600869063 = {
 			isa = PBXGroup;
 			children = (
@@ -77,8 +86,7 @@
 				B31338C31DB315A500AA2D7D /* DateModel.swift */,
 				B3A695E51DB090F600869063 /* Main.storyboard */,
 				B3A695E81DB090F600869063 /* Assets.xcassets */,
-				B3F91C861DB34791001FE8E6 /* AccessGranted.wav */,
-				B3F91C841DB3478A001FE8E6 /* AccessDenied.wav */,
+				B38BDE7D1DCFAEDD009BA21E /* Sounds */,
 				B3A695EA1DB090F600869063 /* LaunchScreen.storyboard */,
 				B3A695ED1DB090F600869063 /* Info.plist */,
 			);
