@@ -42,6 +42,8 @@ enum VendorCompany: String {
     case NWElectrical
 }
 
+// Now I know these project names are not the ones in the project description, but I found these easier to use.
+
 enum ProjectID: String {
     case AAA1
     case AAA2

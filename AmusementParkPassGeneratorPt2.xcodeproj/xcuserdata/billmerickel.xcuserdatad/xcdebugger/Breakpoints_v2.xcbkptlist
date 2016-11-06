@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AmusementParkPassGeneratorPt2/ViewController.swift"
-            timestampString = "500015284.487069"
+            timestampString = "500145850.927305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "initEntrant()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AmusementParkPassGeneratorPt2/ViewController.swift"
-            timestampString = "500015284.487069"
+            timestampString = "500145850.927305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "initEntrant()"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AmusementParkPassGeneratorPt2/ViewController.swift"
-            timestampString = "500015284.487069"
+            timestampString = "500145850.927305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
             landmarkName = "checkLengthsOfInput()"
             landmarkType = "7">
          </BreakpointContent>

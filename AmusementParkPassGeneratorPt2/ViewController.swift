@@ -49,24 +49,29 @@ class ViewController: UIViewController {
     
     @IBAction func guestButton(_ sender: AnyObject) {
         currentEntrantSelection = .guest
+        deleteText()
         adaptUIFromCurrentSelection(); disableAllTextFields()
     }
     @IBAction func employeeButton(_ sender: AnyObject) {
         currentEntrantSelection = .employee
+        deleteText()
         adaptUIFromCurrentSelection(); disableAllTextFields()
     }
     @IBAction func managerButton(_ sender: AnyObject) {
         currentEntrantSelection = .manager
+        deleteText()
         adaptUIFromCurrentSelection(); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
     }
     @IBAction func vendorButton(_ sender: AnyObject) {
         currentEntrantSelection = .vendor
+        deleteText()
         adaptUIFromCurrentSelection(); disableAllTextFields(); controlDOVTextField(on: true)
     }
     
     // When a button to determine what type of entrant (in detail is chosen) is selected, it will look at what type of entrant is suggested to change the buttons according to the type. It will also enable/disable the text fields based on what is required.
     
     @IBAction func button1(_ sender: AnyObject) {
+        deleteText()
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = .classicGuest
         firstButton.setTitle("Classic", for: .normal); disableAllTextFields()
@@ -78,6 +83,7 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func button2(_ sender: AnyObject) {
+        deleteText()
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = .vipGuest
         secondButton.setTitle("VIP", for: .normal); disableAllTextFields()
@@ -91,6 +97,7 @@ class ViewController: UIViewController {
         
     }
     @IBAction func button3(_ sender: AnyObject) {
+        deleteText()
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = .seniorGuest
         thirdButton.setTitle("Senior", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlDOBTextField(on: true)
@@ -103,6 +110,7 @@ class ViewController: UIViewController {
         
     }
     @IBAction func button4(_ sender: AnyObject) {
+        deleteText()
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = .freeChildGuest
         fourthButton.setTitle("Child", for: .normal); disableAllTextFields(); controlDOBTextField(on: true)
@@ -115,6 +123,7 @@ class ViewController: UIViewController {
         
     }
     @IBAction func button5(_ sender: AnyObject) {
+        deleteText()
         switch currentEntrantSelection {
         case .some(.guest): secondCurrentEntrantSelection = .seasonPassGuest
         fifthButton.setTitle("Season Pass", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
@@ -164,16 +173,36 @@ class ViewController: UIViewController {
     }
     
     @IBAction func populateData(_ sender: AnyObject) {
-        firstNameTextView.text = "William"
-        lastNameTextField.text = "Smith"
-        dateOfBirthTextField.text = "1/25/90"
-        dateOfVisitTextLabel.text = "9/30/16"
-        projectIDTextLabel.text = "AAA1"
-        companyTextField.text = "Fedex"
-        streetAddressTextLabel.text = "1234 Main Street"
-        cityTextField.text = "Los Angeles"
-        stateTextField.text = "California"
-        zipCodeTextField.text = "12345"
+        if firstNameTextView.isEnabled {
+            firstNameTextView.text = "William"
+        }
+        if lastNameTextField.isEnabled {
+            lastNameTextField.text = "Johnson"
+        }
+        if dateOfBirthTextField.isEnabled {
+            dateOfBirthTextField.text = "1/25/90"
+        }
+        if dateOfVisitTextLabel.isEnabled {
+            dateOfVisitTextLabel.text = "11/2/16"
+        }
+        if projectIDTextLabel.isEnabled {
+            projectIDTextLabel.text = "AAA1"
+        }
+        if streetAddressTextLabel.isEnabled {
+            streetAddressTextLabel.text = "1234 Main Street"
+        }
+        if companyTextField.isEnabled {
+            companyTextField.text = "Fedex"
+        }
+        if cityTextField.isEnabled {
+            cityTextField.text = "Seattle"
+        }
+        if stateTextField.isEnabled {
+            stateTextField.text = "Washington"
+        }
+        if zipCodeTextField.isEnabled {
+            zipCodeTextField.text = "12345"
+        }
     }
     
     // This is a crazy initializer for the entrant that will look at the type of entrant and inputs from the text field and calculate the entrant's data. This will also search for errors and show alerts if found.
@@ -289,7 +318,7 @@ class ViewController: UIViewController {
         fifthButton.setTitle("", for: .normal)
     }
     
-    // These functions will disable and enable each text field in the app
+    // These functions will disable and enable each text field in the app (the bottom one just gets rid of the text)
     
     func controlDOBTextField(on: Bool) {
         if on == true {
@@ -392,6 +421,18 @@ class ViewController: UIViewController {
         stateTextField.isEnabled = false
         zipCode.isEnabled = false
         zipCodeTextField.isEnabled = false
+    }
+    
+    func deleteText() {
+        dateOfBirthTextField.text = ""
+        dateOfVisitTextLabel.text = ""
+        projectIDTextLabel.text = ""
+        firstNameTextView.text = ""
+        lastNameTextField.text = ""
+        streetAddressTextLabel.text = ""
+        cityTextField.text = ""
+        stateTextField.text = ""
+        zipCodeTextField.text = ""
     }
     
     // And the last function (for the extra credit) checks to see if user inputs seem suspiciously short
