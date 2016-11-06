@@ -10,32 +10,32 @@
 		B31338C41DB315A500AA2D7D /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31338C31DB315A500AA2D7D /* DateModel.swift */; };
 		B31338C61DB316C400AA2D7D /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31338C51DB316C400AA2D7D /* SoundModel.swift */; };
 		B33E9B831DB5C98700B9C8D0 /* EntrantConstructors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33E9B821DB5C98700B9C8D0 /* EntrantConstructors.swift */; };
+		B38BDE831DCFB227009BA21E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B38BDE821DCFB227009BA21E /* Assets.xcassets */; };
+		B38BDE851DCFB238009BA21E /* AccessGranted.wav in Resources */ = {isa = PBXBuildFile; fileRef = B38BDE841DCFB238009BA21E /* AccessGranted.wav */; };
+		B38BDE871DCFB23F009BA21E /* AccessDenied.wav in Resources */ = {isa = PBXBuildFile; fileRef = B38BDE861DCFB23F009BA21E /* AccessDenied.wav */; };
 		B3A695E21DB090F600869063 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A695E11DB090F600869063 /* AppDelegate.swift */; };
 		B3A695E41DB090F600869063 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A695E31DB090F600869063 /* ViewController.swift */; };
 		B3A695E71DB090F600869063 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A695E51DB090F600869063 /* Main.storyboard */; };
-		B3A695E91DB090F600869063 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3A695E81DB090F600869063 /* Assets.xcassets */; };
 		B3A695EC1DB090F600869063 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A695EA1DB090F600869063 /* LaunchScreen.storyboard */; };
 		B3A695F41DB092F500869063 /* EntrantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A695F31DB092F500869063 /* EntrantModel.swift */; };
 		B3B4924D1DBD2DE000C9D912 /* PassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B4924C1DBD2DE000C9D912 /* PassController.swift */; };
-		B3F91C851DB3478A001FE8E6 /* AccessDenied.wav in Resources */ = {isa = PBXBuildFile; fileRef = B3F91C841DB3478A001FE8E6 /* AccessDenied.wav */; };
-		B3F91C871DB34791001FE8E6 /* AccessGranted.wav in Resources */ = {isa = PBXBuildFile; fileRef = B3F91C861DB34791001FE8E6 /* AccessGranted.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B31338C31DB315A500AA2D7D /* DateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		B31338C51DB316C400AA2D7D /* SoundModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
 		B33E9B821DB5C98700B9C8D0 /* EntrantConstructors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntrantConstructors.swift; sourceTree = "<group>"; };
+		B38BDE821DCFB227009BA21E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
+		B38BDE841DCFB238009BA21E /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = AccessGranted.wav; path = ../../../../../../../Downloads/AudioFiles/AccessGranted.wav; sourceTree = "<group>"; };
+		B38BDE861DCFB23F009BA21E /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = AccessDenied.wav; path = ../../../../../../../Downloads/AudioFiles/AccessDenied.wav; sourceTree = "<group>"; };
 		B3A695DE1DB090F600869063 /* AmusementParkPassGeneratorPt2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmusementParkPassGeneratorPt2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3A695E11DB090F600869063 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3A695E31DB090F600869063 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B3A695E61DB090F600869063 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B3A695E81DB090F600869063 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3A695EB1DB090F600869063 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3A695ED1DB090F600869063 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3A695F31DB092F500869063 /* EntrantModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntrantModel.swift; sourceTree = "<group>"; };
 		B3B4924C1DBD2DE000C9D912 /* PassController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassController.swift; sourceTree = "<group>"; };
-		B3F91C841DB3478A001FE8E6 /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = AccessDenied.wav; path = ../../../Swift/AmusementParkPassGenerator/AmusementParkPassGenerator/AccessDenied.wav; sourceTree = "<group>"; };
-		B3F91C861DB34791001FE8E6 /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = AccessGranted.wav; path = ../../../Swift/AmusementParkPassGenerator/AmusementParkPassGenerator/AccessGranted.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,15 +49,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B38BDE7D1DCFAEDD009BA21E /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				B3F91C841DB3478A001FE8E6 /* AccessDenied.wav */,
-				B3F91C861DB34791001FE8E6 /* AccessGranted.wav */,
-			);
-			name = Sounds;
-			sourceTree = "<group>";
-		};
 		B3A695D51DB090F600869063 = {
 			isa = PBXGroup;
 			children = (
@@ -84,9 +75,10 @@
 				B33E9B821DB5C98700B9C8D0 /* EntrantConstructors.swift */,
 				B31338C51DB316C400AA2D7D /* SoundModel.swift */,
 				B31338C31DB315A500AA2D7D /* DateModel.swift */,
+				B38BDE841DCFB238009BA21E /* AccessGranted.wav */,
+				B38BDE861DCFB23F009BA21E /* AccessDenied.wav */,
+				B38BDE821DCFB227009BA21E /* Assets.xcassets */,
 				B3A695E51DB090F600869063 /* Main.storyboard */,
-				B3A695E81DB090F600869063 /* Assets.xcassets */,
-				B38BDE7D1DCFAEDD009BA21E /* Sounds */,
 				B3A695EA1DB090F600869063 /* LaunchScreen.storyboard */,
 				B3A695ED1DB090F600869063 /* Info.plist */,
 			);
@@ -154,11 +146,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B38BDE851DCFB238009BA21E /* AccessGranted.wav in Resources */,
 				B3A695EC1DB090F600869063 /* LaunchScreen.storyboard in Resources */,
-				B3F91C871DB34791001FE8E6 /* AccessGranted.wav in Resources */,
-				B3A695E91DB090F600869063 /* Assets.xcassets in Resources */,
+				B38BDE831DCFB227009BA21E /* Assets.xcassets in Resources */,
+				B38BDE871DCFB23F009BA21E /* AccessDenied.wav in Resources */,
 				B3A695E71DB090F600869063 /* Main.storyboard in Resources */,
-				B3F91C851DB3478A001FE8E6 /* AccessDenied.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
