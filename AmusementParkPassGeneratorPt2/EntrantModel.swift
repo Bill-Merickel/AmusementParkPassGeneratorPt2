@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-// Entrant Types
+// All current entrants have their own class.
+// Some classes have characteristics that others don't.
+// But for the most part, they are all similar.
 
 class Guest: Entrant {
     var areaAccess: AreaAccess
@@ -19,6 +21,7 @@ class Guest: Entrant {
     var guestType: GuestType
     var accessGranted: Bool = true
     
+    // Customized init method to ensure all correct and required information is given
     init(guestType: GuestType, DOB: String, information: Information) throws {
         self.guestType = guestType
         switch guestType {
@@ -32,17 +35,6 @@ class Guest: Entrant {
         case .seasonPassGuest: self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: false, rideControlAreas: false, maintainanceAreas: false, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: true); self.discountAccess = DiscountAccess(foodDiscount: 10, merchandiseDiscount: 20); self.information = information
         }
     }
-    
-    
-    // Class function that checks if it's your birthday
-    
-    /* func checkForBirthday(_ guest: Entrant) {
-     if let dateOfBirth = guest.information?.DOB {
-     if dateOfBirth.day == day && dateOfBirth.month == month {
-     print("Happy Birthday!! I hope you have a fantastic day at the park!")
-     }
-     }
-     }*/
 }
 
 class Employee: Entrant {
@@ -77,7 +69,9 @@ class Employee: Entrant {
                 throw Errors.invalidProjectNumber
             }
             
+            // If required information is missing...
             if (information.firstName?.isEmpty)! || (information.lastName?.isEmpty)! || (information.streetAddress?.isEmpty)! || (information.city?.isEmpty)! || (information.state?.isEmpty)! || (information.zipCode?.isEmpty)! {
+                // Throw an error (this is in all classes)
                 throw Errors.missingInformation
             }
             self.areaAccess = AreaAccess(amusementAreas: true, kitchenAreas: true, rideControlAreas: false, maintainanceAreas: true, officeAreas: false); self.rideAccess = RideAccess(accessAllRides: true, skipAllLines: false); self.discountAccess = nil; self.information = information
@@ -96,8 +90,11 @@ class Manager: Entrant {
     var information: Information?
     var accessGranted: Bool = true
     
-    init(information: Information) {
+    init(information: Information) throws {
         self.information = information
+        if information.firstName == "" || information.lastName == "" || information.streetAddress == "" || information.city == "" || information.state == "" || information.zipCode == ""{
+            throw Errors.missingInformation
+        }
     }
 }
 
@@ -126,22 +123,3 @@ class Vendor: Entrant {
         }
     }
 }
-
-
-
-// Checks the DOB property and throws and an error if missing
-
-func checkForDate(guest: Guest) throws {
-    if guest.guestType == .freeChild {
-        if guest.information?.DOB == nil {
-            throw Errors.missingDOB
-        }
-    }
-}
-
-func checkForInformation(_ guest: Guest) throws {
-    if guest.information == nil {
-        throw Errors.missingInformation
-    }
-}
-

@@ -7,9 +7,18 @@
 //
 
 import Foundation
-import UIKit
 
-// Entrant enums
+// The protocol to define any entrant in the park
+
+protocol Entrant {
+    var areaAccess: AreaAccess { get set }
+    var rideAccess: RideAccess { get set }
+    var discountAccess: DiscountAccess? { get set }
+    var information: Information? { get set }
+    var accessGranted: Bool { get set }
+}
+
+// Enums to provide types of Entrants, Project ID's, Vendor Companies, etc.
 
 enum GuestType {
     case classic
@@ -48,7 +57,21 @@ enum EntrantSelection {
     case vendor
 }
 
-// Errors
+enum EntrantType {
+    case classicGuest
+    case vipGuest
+    case freeChildGuest
+    case seniorGuest
+    case seasonPassGuest
+    case foodEmployee
+    case rideEmployee
+    case maintainenceEmployee
+    case contract
+    case manager
+    case vendor
+}
+
+// Error Enums
 
 enum Errors: Error {
     case missingDOB
@@ -56,9 +79,10 @@ enum Errors: Error {
     case invalidProjectNumber
     case invalidVendorCompany
     case missingEntrantSelection
+    case inputsTooShort
 }
 
-// Helper structs
+// Struct to create the characteristics of the entrant
 
 struct AreaAccess {
     var amusementAreas: Bool
@@ -97,16 +121,15 @@ struct Information {
     }
 }
 
+// An extension to String to convert a string into a date format (used to check the birthday of guest)
 
-
-
-
-// Protocols
-
-protocol Entrant {
-    var areaAccess: AreaAccess { get set }
-    var rideAccess: RideAccess { get set }
-    var discountAccess: DiscountAccess? { get set }
-    var information: Information? { get set }
-    var accessGranted: Bool { get set }
+extension String {
+    func convertStringToDate(date: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/DD"
+        let dateFromString: Date = dateFormatter.date(from: self)!
+        return dateFromString
+    }
 }
+
+

@@ -10,11 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    /* NOTE: A few things I want to point out about this project.
+    First things first, I changed the SSN text field to Date of Visit, becuase there was no implemention of SSN's but there was a Date of Visit that had no text field. I thought this was logical.
+    Second, there are no example entrants in my code because there is no way the user can interact with them without giving major changes to the app. I thought about this for a while, and I came to the desicion that not implementing them would be logical also.
+    Lastly, I had a great time with this project. It took me countless to work on, but I truly gained from this. Thank you Treehouse!
+    OK, I'm done now, please continue :)
+     */
+    
+    // This is the entrant that the administer will control throughout the app
     var entrant: Entrant?
+    
+    // And these variables describe the type of entrant that is selected
+    var currentEntrantSelection: EntrantSelection?
+    var secondCurrentEntrantSelection: EntrantType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view,  from a nib.
         clearButtonTexts()
     }
     
@@ -23,14 +34,18 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Transfer important data from this view controller to PassController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MainController" {
             if let destinationVC = segue.destination as? PassController {
                 destinationVC.entrant = entrant
+                destinationVC.currentEntrantSelection = currentEntrantSelection
+                destinationVC.secondCurrentEntrantSelection = secondCurrentEntrantSelection
             }
         }
     }
     
+    // The UI Buttons a (at the top of the app) used to customize the app
     
     @IBAction func guestButton(_ sender: AnyObject) {
         currentEntrantSelection = .guest
@@ -49,11 +64,13 @@ class ViewController: UIViewController {
         adaptUIFromCurrentSelection(); disableAllTextFields(); controlDOVTextField(on: true)
     }
     
+    // When a button to determine what type of entrant (in detail is chosen) is selected, it will look at what type of entrant is suggested to change the buttons according to the type. It will also enable/disable the text fields based on what is required.
+    
     @IBAction func button1(_ sender: AnyObject) {
         switch currentEntrantSelection {
-        case .some(.guest): secondCurrentEntrantSelection = GuestType.classic as AnyObject?;
+        case .some(.guest): secondCurrentEntrantSelection = .classicGuest
         firstButton.setTitle("Classic", for: .normal); disableAllTextFields()
-        case .some(.employee): secondCurrentEntrantSelection = EmployeeType.foodServices as AnyObject?
+        case .some(.employee): secondCurrentEntrantSelection = .foodEmployee
         firstButton.setTitle("Food Services", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
         case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
         case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
@@ -62,10 +79,11 @@ class ViewController: UIViewController {
     }
     @IBAction func button2(_ sender: AnyObject) {
         switch currentEntrantSelection {
-        case .some(.guest): secondCurrentEntrantSelection = GuestType.vip as AnyObject?;
+        case .some(.guest): secondCurrentEntrantSelection = .vipGuest
         secondButton.setTitle("VIP", for: .normal); disableAllTextFields()
-        case .some(.employee): secondCurrentEntrantSelection = EmployeeType.rideServices as AnyObject?
+        case .some(.employee): secondCurrentEntrantSelection = .rideEmployee
         secondButton.setTitle("Ride Services", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
+            secondCurrentEntrantSelection = .rideEmployee
         case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
         case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
         case .none: break
@@ -74,9 +92,9 @@ class ViewController: UIViewController {
     }
     @IBAction func button3(_ sender: AnyObject) {
         switch currentEntrantSelection {
-        case .some(.guest): secondCurrentEntrantSelection = GuestType.seniorGuest as AnyObject?;
+        case .some(.guest): secondCurrentEntrantSelection = .seniorGuest
         thirdButton.setTitle("Senior", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlDOBTextField(on: true)
-        case .some(.employee): secondCurrentEntrantSelection = EmployeeType.maintainence as AnyObject?
+        case .some(.employee): secondCurrentEntrantSelection = .maintainenceEmployee
         thirdButton.setTitle("Maintainence", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
         case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
         case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
@@ -86,9 +104,9 @@ class ViewController: UIViewController {
     }
     @IBAction func button4(_ sender: AnyObject) {
         switch currentEntrantSelection {
-        case .some(.guest): secondCurrentEntrantSelection = GuestType.freeChild as AnyObject?;
+        case .some(.guest): secondCurrentEntrantSelection = .freeChildGuest
         fourthButton.setTitle("Child", for: .normal); disableAllTextFields(); controlDOBTextField(on: true)
-        case .some(.employee): secondCurrentEntrantSelection = EmployeeType.contract as AnyObject?
+        case .some(.employee): secondCurrentEntrantSelection = .contract
         fourthButton.setTitle("Contract", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true); controlProjectIDTextField(on: true)
         case .some(.manager): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
         case .some(.vendor): secondCurrentEntrantSelection = nil; disableAllTextFields(); controlCompanyTextField(on: true)
@@ -98,7 +116,7 @@ class ViewController: UIViewController {
     }
     @IBAction func button5(_ sender: AnyObject) {
         switch currentEntrantSelection {
-        case .some(.guest): secondCurrentEntrantSelection = GuestType.seasonPassGuest as AnyObject?;
+        case .some(.guest): secondCurrentEntrantSelection = .seasonPassGuest
         fifthButton.setTitle("Season Pass", for: .normal); disableAllTextFields(); controlFirstNameTextField(on: true); controlLastNameTextField(on: true); controlFullAddressTextFields(on: true)
         case .some(.employee): secondCurrentEntrantSelection = nil
         removeFifthButton()
@@ -108,9 +126,7 @@ class ViewController: UIViewController {
         }
     }
     
-    
-    var currentEntrantSelection: EntrantSelection?
-    var secondCurrentEntrantSelection: AnyObject?
+    // The (too long) list of all connections from the UI
     
     @IBOutlet weak var buttonView: UIStackView!
     @IBOutlet weak var guestButton: UIButton!
@@ -142,14 +158,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var stateTextField: UITextField!
     @IBOutlet weak var zipCode: UILabel!
     @IBOutlet weak var zipCodeTextField: UITextField!
-    
+
     @IBAction func generatePass(_ sender: Any) {
         initEntrant()
-        print("First \(entrant?.information?.firstName)")
     }
     
     @IBAction func populateData(_ sender: AnyObject) {
-        firstNameTextView.text = "John"
+        firstNameTextView.text = "William"
         lastNameTextField.text = "Smith"
         dateOfBirthTextField.text = "1/25/90"
         dateOfVisitTextLabel.text = "9/30/16"
@@ -161,17 +176,37 @@ class ViewController: UIViewController {
         zipCodeTextField.text = "12345"
     }
     
+    // This is a crazy initializer for the entrant that will look at the type of entrant and inputs from the text field and calculate the entrant's data. This will also search for errors and show alerts if found.
+    
     func initEntrant() {
         switch currentEntrantSelection {
         case .some(.guest): do {
-            try entrant = Guest(guestType: secondCurrentEntrantSelection as! GuestType, DOB: (dateOfBirthTextField.text!), information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text))
+            if secondCurrentEntrantSelection == .classicGuest {
+                try entrant = Guest(guestType: .classic, DOB: (dateOfBirthTextField.text!), information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text))
+            } else if secondCurrentEntrantSelection == .vipGuest {
+                try entrant = Guest(guestType: .vip, DOB: (dateOfBirthTextField.text!), information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text))
+            } else if secondCurrentEntrantSelection == .freeChildGuest {
+                try entrant = Guest(guestType: .freeChild, DOB: (dateOfBirthTextField.text!), information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text))
+            } else if secondCurrentEntrantSelection == .seasonPassGuest {
+                try entrant = Guest(guestType: .seasonPassGuest, DOB: (dateOfBirthTextField.text!), information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text))
+            } else if secondCurrentEntrantSelection == .seniorGuest {
+                try entrant = Guest(guestType: .seniorGuest, DOB: (dateOfBirthTextField.text!), information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text))
+            }
         } catch Errors.missingDOB {
             showAlert(title: "Missing Date of Birth", message: "All Free Child entrants must have a date of birth!")
         } catch _ {
             fatalError()
             }
         case .some(.employee): do {
-            try entrant = Employee(employeeType: secondCurrentEntrantSelection as! EmployeeType, information: Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text), projectID: projectIDTextLabel.text)
+            if secondCurrentEntrantSelection == .foodEmployee {
+                try entrant = Employee(employeeType: .foodServices, information: Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text), projectID: projectIDTextLabel.text)
+            } else if secondCurrentEntrantSelection == .rideEmployee {
+                try entrant = Employee(employeeType: .rideServices, information: Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text), projectID: projectIDTextLabel.text)
+            } else if secondCurrentEntrantSelection == .maintainenceEmployee {
+                try entrant = Employee(employeeType: .maintainence, information: Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text), projectID: projectIDTextLabel.text)
+            } else if secondCurrentEntrantSelection == .contract {
+                try entrant = Employee(employeeType: .contract, information: Information(firstName: firstNameTextView.text, lastName: lastNameTextField.text, streetAddress: streetAddressTextLabel.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text), projectID: projectIDTextLabel.text)
+            }
         } catch Errors.invalidProjectNumber {
             showAlert(title: "Invalid Project ID", message: "The project ID you entered isn't valid.")
         } catch Errors.missingInformation {
@@ -179,9 +214,17 @@ class ViewController: UIViewController {
         } catch _ {
             fatalError()
             }
-        case .some(.manager): entrant = Manager(information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text!, city: cityTextField.text!, state: stateTextField.text!, zipCode: zipCodeTextField.text!))
+        case .some(.manager): do {
+            secondCurrentEntrantSelection = .manager
+            try entrant = Manager(information: Information(firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, streetAddress: streetAddressTextLabel.text!, city: cityTextField.text!, state: stateTextField.text!, zipCode: zipCodeTextField.text!))
+        } catch Errors.missingInformation {
+            showAlert(title: "Missing Information", message: "Not all required fields have information!")
+        } catch _ {
+            fatalError()
+        }
         case .some(.vendor): do {
             try entrant = Vendor(vendor: companyTextField.text!, firstName: firstNameTextView.text!, lastName: lastNameTextField.text!, DOB: dateOfBirthTextField.text!, DOV: dateOfVisitTextLabel.text!)
+            secondCurrentEntrantSelection = .vendor
         } catch Errors.missingInformation {
             showAlert(title: "Missing Information", message: "Not all required fields have information!")
         } catch _ {
@@ -189,9 +232,17 @@ class ViewController: UIViewController {
             }
         case .none: showAlert(title: "No Entrant Selected", message: "Select an entrant to create a pass for.")
         }
+        
+        do {
+            try checkLengthsOfInput()
+        } catch Errors.inputsTooShort {
+            showAlert(title: "Inputs Too Short", message: "The inputs for the entrant are too short.")
+        } catch _ {
+            fatalError()
+        }
     }
     
-    // There are different swipe methods for different park assets
+    // This modifies the UI based on what type is selected from the user.
     
     func adaptUIFromCurrentSelection() {
         switch currentEntrantSelection {
@@ -203,6 +254,8 @@ class ViewController: UIViewController {
         }
     }
     
+    // This method was for my convenienvce so whenever I wanted to create an alert, I just type my title and message instead of having to repeat the process to create an alert.
+    
     func showAlert(title: String?, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -210,6 +263,7 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    // These next few methods should be pretty self-explanatory
     func showFirst4Buttons() {
         firstButton.isHidden = false
         secondButton.isHidden = false
@@ -234,6 +288,8 @@ class ViewController: UIViewController {
         fourthButton.setTitle("", for: .normal)
         fifthButton.setTitle("", for: .normal)
     }
+    
+    // These functions will disable and enable each text field in the app
     
     func controlDOBTextField(on: Bool) {
         if on == true {
@@ -336,5 +392,13 @@ class ViewController: UIViewController {
         stateTextField.isEnabled = false
         zipCode.isEnabled = false
         zipCodeTextField.isEnabled = false
+    }
+    
+    // And the last function (for the extra credit) checks to see if user inputs seem suspiciously short
+    
+    func checkLengthsOfInput() throws {
+        if (firstNameTextView.text?.characters.count)! <= 1 || (lastNameTextField.text?.characters.count)! <= 1 || (streetAddressTextLabel.text?.characters.count)! <= 5 || (cityTextField.text?.characters.count)! <= 2 || (state.text?.characters.count)! <= 3 || (zipCodeTextField.text?.characters.count)! <= 4 || (dateOfBirthTextField.text?.characters.count)! <= 5 || (dateOfVisitTextLabel.text?.characters.count)! <= 5 || (projectIDTextLabel.text?.characters.count)! <= 3 || (firstNameTextView.text?.characters.count)! >= 14 || (lastNameTextField.text?.characters.count)! >= 15 || (streetAddressTextLabel.text?.characters.count)! >= 30 || (cityTextField.text?.characters.count)! >= 16 || (state.text?.characters.count)! >= 14 || (zipCodeTextField.text?.characters.count)! >= 6 || (dateOfBirthTextField.text?.characters.count)! >= 8 || (dateOfVisitTextLabel.text?.characters.count)! >= 8 || (projectIDTextLabel.text?.characters.count)! >= 5 {
+             throw Errors.inputsTooShort
+        }
     }
 }
