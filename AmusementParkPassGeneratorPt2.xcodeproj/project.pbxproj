@@ -11,8 +11,7 @@
 		B31338C61DB316C400AA2D7D /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31338C51DB316C400AA2D7D /* SoundModel.swift */; };
 		B33E9B831DB5C98700B9C8D0 /* EntrantConstructors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33E9B821DB5C98700B9C8D0 /* EntrantConstructors.swift */; };
 		B38BDE831DCFB227009BA21E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B38BDE821DCFB227009BA21E /* Assets.xcassets */; };
-		B38BDE851DCFB238009BA21E /* AccessGranted.wav in Resources */ = {isa = PBXBuildFile; fileRef = B38BDE841DCFB238009BA21E /* AccessGranted.wav */; };
-		B38BDE871DCFB23F009BA21E /* AccessDenied.wav in Resources */ = {isa = PBXBuildFile; fileRef = B38BDE861DCFB23F009BA21E /* AccessDenied.wav */; };
+		B38BDE891DCFB391009BA21E /* AudioFiles in Resources */ = {isa = PBXBuildFile; fileRef = B38BDE881DCFB391009BA21E /* AudioFiles */; };
 		B3A695E21DB090F600869063 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A695E11DB090F600869063 /* AppDelegate.swift */; };
 		B3A695E41DB090F600869063 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A695E31DB090F600869063 /* ViewController.swift */; };
 		B3A695E71DB090F600869063 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A695E51DB090F600869063 /* Main.storyboard */; };
@@ -26,8 +25,7 @@
 		B31338C51DB316C400AA2D7D /* SoundModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
 		B33E9B821DB5C98700B9C8D0 /* EntrantConstructors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntrantConstructors.swift; sourceTree = "<group>"; };
 		B38BDE821DCFB227009BA21E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
-		B38BDE841DCFB238009BA21E /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = AccessGranted.wav; path = ../../../../../../../Downloads/AudioFiles/AccessGranted.wav; sourceTree = "<group>"; };
-		B38BDE861DCFB23F009BA21E /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = AccessDenied.wav; path = ../../../../../../../Downloads/AudioFiles/AccessDenied.wav; sourceTree = "<group>"; };
+		B38BDE881DCFB391009BA21E /* AudioFiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AudioFiles; sourceTree = "<group>"; };
 		B3A695DE1DB090F600869063 /* AmusementParkPassGeneratorPt2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmusementParkPassGeneratorPt2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3A695E11DB090F600869063 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3A695E31DB090F600869063 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,10 +73,9 @@
 				B33E9B821DB5C98700B9C8D0 /* EntrantConstructors.swift */,
 				B31338C51DB316C400AA2D7D /* SoundModel.swift */,
 				B31338C31DB315A500AA2D7D /* DateModel.swift */,
-				B38BDE841DCFB238009BA21E /* AccessGranted.wav */,
-				B38BDE861DCFB23F009BA21E /* AccessDenied.wav */,
-				B38BDE821DCFB227009BA21E /* Assets.xcassets */,
 				B3A695E51DB090F600869063 /* Main.storyboard */,
+				B38BDE881DCFB391009BA21E /* AudioFiles */,
+				B38BDE821DCFB227009BA21E /* Assets.xcassets */,
 				B3A695EA1DB090F600869063 /* LaunchScreen.storyboard */,
 				B3A695ED1DB090F600869063 /* Info.plist */,
 			);
@@ -146,11 +143,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B38BDE851DCFB238009BA21E /* AccessGranted.wav in Resources */,
 				B3A695EC1DB090F600869063 /* LaunchScreen.storyboard in Resources */,
 				B38BDE831DCFB227009BA21E /* Assets.xcassets in Resources */,
-				B38BDE871DCFB23F009BA21E /* AccessDenied.wav in Resources */,
 				B3A695E71DB090F600869063 /* Main.storyboard in Resources */,
+				B38BDE891DCFB391009BA21E /* AudioFiles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
