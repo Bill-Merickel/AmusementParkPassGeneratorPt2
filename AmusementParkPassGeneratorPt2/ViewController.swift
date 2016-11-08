@@ -447,39 +447,39 @@ class ViewController: UIViewController {
             }
         }
         if lastNameTextField.isEnabled {
-            if ((firstNameTextView.text?.characters.count))! <= 2 {
+            if ((lastNameTextField.text?.characters.count))! <= 2 {
                 throw Errors.inputsTooShort
             }        }
         if dateOfBirthTextField.isEnabled {
-            if ((firstNameTextView.text?.characters.count))! <= 5 {
+            if ((dateOfBirthTextField.text?.characters.count))! <= 5 {
                 throw Errors.inputsTooShort
             }        }
         if dateOfVisitTextLabel.isEnabled {
-            if ((firstNameTextView.text?.characters.count))! <= 5 {
+            if ((dateOfVisitTextLabel.text?.characters.count))! <= 5 {
                 throw Errors.inputsTooShort
             }        }
         if projectIDTextLabel.isEnabled {
-            if ((firstNameTextView.text?.characters.count))! <= 3 {
+            if ((projectIDTextLabel.text?.characters.count))! <= 3 {
                 throw Errors.inputsTooShort
             }        }
         if streetAddressTextLabel.isEnabled {
-            if ((firstNameTextView.text?.characters.count))! <= 6 {
+            if ((streetAddressTextLabel.text?.characters.count))! <= 6 {
                 throw Errors.inputsTooShort
             }        }
         if companyTextField.isEnabled {
-            if ((firstNameTextView.text?.characters.count))! <= 3 {
+            if ((companyTextField.text?.characters.count))! <= 3 {
                 throw Errors.inputsTooShort
             }        }
         if cityTextField.isEnabled {
-            if ((firstNameTextView.text?.characters.count))! <= 4 {
+            if ((cityTextField.text?.characters.count))! <= 4 {
                 throw Errors.inputsTooShort
             }        }
         if stateTextField.isEnabled {
-            if ((firstNameTextView.text?.characters.count))! <= 3 {
+            if ((stateTextField.text?.characters.count))! <= 3 {
                 throw Errors.inputsTooShort
             }        }
         if zipCodeTextField.isEnabled {
-            if ((firstNameTextView.text?.characters.count))! <= 4 {
+            if ((zipCodeTextField.text?.characters.count))! <= 4 {
                 throw Errors.inputsTooShort
             }
         }
